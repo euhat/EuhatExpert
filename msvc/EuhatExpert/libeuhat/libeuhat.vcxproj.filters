@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="euhat">
+      <UniqueIdentifier>{da9e4aa2-b7fa-454d-84f9-4cebf0258563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\common">
+      <UniqueIdentifier>{74747989-4bda-41ec-85a5-365abac03d85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\os">
+      <UniqueIdentifier>{d3a11b71-e4de-44b2-9294-cff133188fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\xml">
+      <UniqueIdentifier>{85238d03-1ae7-418b-9fcb-f80786b39e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\os\win32">
+      <UniqueIdentifier>{159855c9-bd27-43ca-a286-f9b9b686fa1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\os\linux">
+      <UniqueIdentifier>{c7096c50-f0f0-45c7-91ca-8e3caff7a5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\sqlite">
+      <UniqueIdentifier>{6a1f1bf3-69dc-407f-8406-80b9c85ef8ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\dbop">
+      <UniqueIdentifier>{19434733-22af-4b2e-8f1e-378aaeb5cffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{090d30cb-c396-4012-bb8b-3f7100851da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\FileMan">
+      <UniqueIdentifier>{7be7a6fa-4547-4060-aff4-6153487d50e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\FileMan\client">
+      <UniqueIdentifier>{92a369ee-4782-49b2-8a74-51f7003a8f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\FileMan\server">
+      <UniqueIdentifier>{f1360908-ec07-4f28-aa1a-4d592de317de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\FileMan\common">
+      <UniqueIdentifier>{b3d09c58-859f-4e93-b7ee-ffe6b3846633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleFileServer">
+      <UniqueIdentifier>{6e1d308d-3fd0-4776-98ba-9cba5808cf5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleFileServer\client">
+      <UniqueIdentifier>{8ea4d864-f19b-43f7-9a1f-85a2d6602498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleFileServer\server">
+      <UniqueIdentifier>{0cfe316c-1480-4aa7-bb36-57162f5389cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleFileServer\common">
+      <UniqueIdentifier>{a2751d6f-3227-409f-a707-8f253aab84e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleEchoServer">
+      <UniqueIdentifier>{15c32896-d68d-4f08-b1b5-7ee332a5d38c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleEchoServer\client">
+      <UniqueIdentifier>{cdf6367e-0a9d-4bc8-8019-6db5aefd055c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\SimpleEchoServer\server">
+      <UniqueIdentifier>{e3ad94a6-0379-47bf-8874-7fb37b05b150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\openssl">
+      <UniqueIdentifier>{77368153-dfcb-48f1-a7df-4c92b41f57c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{0c7fafb1-6c39-4d6d-8661-f27dc83c7e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\os\win32\apihook">
+      <UniqueIdentifier>{17b90388-c279-42b7-b066-61e7c38e6c7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\os\win32\apihook\gdi">
+      <UniqueIdentifier>{2f5db9d1-b4e4-442d-8586-aa634f395323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\openssl\bn">
+      <UniqueIdentifier>{18f2fdc6-bec7-4f4c-b3d4-67c9a259390c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\openssl\bn\crypto">
+      <UniqueIdentifier>{773c46a6-d917-4552-9741-77715ec0676b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="euhat\openssl\bn\internal">
+      <UniqueIdentifier>{426bb708-36f6-4d40-aabc-d6664c5189c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\euhat\common\JyList.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyMsgLoop.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JySockSelector.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyUdpSelector.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyWorkQueue.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyWorkThread.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\OpCommon.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\WhCommon.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\xml\tinyxml2.h">
+      <Filter>euhat\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatBackWnd.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatBitmap.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatButton.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatChildWnd.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatJpgOp.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatPostDef.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatPostDefMfc.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatPreDef.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatTabCtrl.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatUiLocalization.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\OpFile.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\OpWin.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\OpCommonOs.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\dbop\DbOpSqlite.h">
+      <Filter>euhat\dbop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\dbop\DbOpSqliteTable.h">
+      <Filter>euhat\dbop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyTcpSelector.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\WhCommonOs.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyDataEncrypt.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyDataStream.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyBuf.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FileManClient.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\common\FileManFileOp.h">
+      <Filter>app\FileMan\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FileManServer.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\client\SimpleFileClient.h">
+      <Filter>app\SimpleFileServer\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\common\SimpleFileOp.h">
+      <Filter>app\SimpleFileServer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\common\SimplePacket.h">
+      <Filter>app\SimpleFileServer\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\server\SimpleFileServer.h">
+      <Filter>app\SimpleFileServer\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\SimpleEchoServer\client\SimpleEchoClient.h">
+      <Filter>app\SimpleEchoServer\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\SimpleEchoServer\server\SimpleEchoServer.h">
+      <Filter>app\SimpleEchoServer\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyTcpClient.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyTcpServer.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FmcDownFile.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FmcUpFile.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FmsDownFile.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FmcPeerFileList.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FmsPeerFileList.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\common\FileManType.h">
+      <Filter>app\FileMan\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FmsUpFile.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\base64.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyBigNum.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\dbop\DbOpIni.h">
+      <Filter>euhat\dbop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyTcpEndpoint.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatListCtrl.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatScrollHBar.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatScrollVBar.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatIcon.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatScrollBar.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatOsType.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\JyMutex.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\EuhatPath.h">
+      <Filter>euhat\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\common\FmScheduler.h">
+      <Filter>app\FileMan\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\common\FmTask.h">
+      <Filter>app\FileMan\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FmcTask.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FmsTask.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\common\FmLocal.h">
+      <Filter>app\FileMan\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\APIHook.hpp">
+      <Filter>euhat\os\win32\apihook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\BaseHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\BitmapHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\BrushHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\DCHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\ExtPenHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\FontHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\Gdi.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\PaletteHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\PenHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\RegionHook.hpp">
+      <Filter>euhat\os\win32\apihook\gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\win32\EuhatToolTip.h">
+      <Filter>euhat\os\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FmcDelFile.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FmsDelFile.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\client\FmcNewFile.h">
+      <Filter>app\FileMan\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\app\FileMan\server\FmsNewFile.h">
+      <Filter>app\FileMan\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\asn1.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\asn1err.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bio.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bioerr.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bnerr.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\buffer.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\buffererr.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\configuration.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\core.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\crypto.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\cryptoerr.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\dh.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\dherr.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\e_os2.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\err.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\lhash.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\macros.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\opensslconf.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\opensslv.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\params.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\rand.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\randerr.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\safestack.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\srp.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\stack.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\symhacks.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\trace.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\types.h">
+      <Filter>euhat\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\crypto\bn.h">
+      <Filter>euhat\openssl\bn\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\crypto\bn_conf.h">
+      <Filter>euhat\openssl\bn\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\crypto\bn_dh.h">
+      <Filter>euhat\openssl\bn\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\crypto\bn_srp.h">
+      <Filter>euhat\openssl\bn\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\crypto\ctype.h">
+      <Filter>euhat\openssl\bn\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\crypto\rand.h">
+      <Filter>euhat\openssl\bn\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\internal\constant_time.h">
+      <Filter>euhat\openssl\bn\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\internal\cryptlib.h">
+      <Filter>euhat\openssl\bn\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\internal\endian.h">
+      <Filter>euhat\openssl\bn\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\openssl\bn\internal\nelem.h">
+      <Filter>euhat\openssl\bn\internal</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\euhat\common\JyMsgLoop.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JySockSelector.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyUdpSelector.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyWorkThread.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\OpCommon.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\xml\tinyxml2.cpp">
+      <Filter>euhat\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatBackWnd.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatBitmap.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatButton.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatChildWnd.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatJpgOp.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatTabCtrl.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatUiLocalization.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\OpFile.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\OpWin.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\OpCommonOs.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\sqlite\sqlite3euhat.c">
+      <Filter>euhat\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\dbop\DbOpSqlite.cpp">
+      <Filter>euhat\dbop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\dbop\DbOpSqliteTable.cpp">
+      <Filter>euhat\dbop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyTcpSelector.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyDataEncpyt.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyDataStream.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyBuf.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\client\FileManClient.cpp">
+      <Filter>app\FileMan\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\common\FileManFileOp.cpp">
+      <Filter>app\FileMan\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\server\FileManServer.cpp">
+      <Filter>app\FileMan\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\client\SimpleFileClient.cpp">
+      <Filter>app\SimpleFileServer\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\common\SimpleFileOp.cpp">
+      <Filter>app\SimpleFileServer\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\server\SimpleFileServer.cpp">
+      <Filter>app\SimpleFileServer\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\SimpleEchoServer\client\SimpleEchoClient.cpp">
+      <Filter>app\SimpleEchoServer\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\SimpleEchoServer\server\SimpleEchoServer.cpp">
+      <Filter>app\SimpleEchoServer\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyTcpClient.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyTcpServer.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\client\FmcDownFile.cpp">
+      <Filter>app\FileMan\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\client\FmcUpFile.cpp">
+      <Filter>app\FileMan\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\server\FmsDownFile.cpp">
+      <Filter>app\FileMan\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\server\FmsUpFile.cpp">
+      <Filter>app\FileMan\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\WhCommon.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\client\FmcPeerFileList.cpp">
+      <Filter>app\FileMan\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\server\FmsPeerFileList.cpp">
+      <Filter>app\FileMan\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\base64.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyBigNum.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\dbop\DbOpIni.cpp">
+      <Filter>euhat\dbop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\JyTcpEndpoint.cpp">
+      <Filter>euhat\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatListCtrl.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatListCtrlDrawRunner.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatListCtrlEventRunner.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatIcon.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatScrollBar.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\test\TestSimpleEchoServer.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\test\TestSimpleFileServer.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\EuhatPath.cpp">
+      <Filter>euhat\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\common\FmScheduler.cpp">
+      <Filter>app\FileMan\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\common\FmLocal.cpp">
+      <Filter>app\FileMan\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\win32\EuhatToolTip.cpp">
+      <Filter>euhat\os\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\client\FmcDelFile.cpp">
+      <Filter>app\FileMan\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\server\FmsDelFile.cpp">
+      <Filter>app\FileMan\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\client\FmcNewFile.cpp">
+      <Filter>app\FileMan\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\app\FileMan\server\FmsNewFile.cpp">
+      <Filter>app\FileMan\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_add.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_asm.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_const.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_conv.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_ctx.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_depr.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_dh.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_div.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_err.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_exp.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_exp2.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_gcd.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_gf2m.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_intern.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_kron.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_lib.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_mod.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_mont.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_mpi.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_mul.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_nist.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_prime.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_print.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_recp.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_rsa_fips186_4.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_shift.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_sqr.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_sqrt.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_srp.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_word.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_x931p.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\rsaz_exp.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\mem.c">
+      <Filter>euhat\openssl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\ctype.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\openssl\bn\bn_rand.c">
+      <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

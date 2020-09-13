@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<expert>
+	<CfgDlg title="设置">
+		<Text id="GENERAL" name="常规" />
+		<Text id="WORK_TRACE" name="工作记录" />
+		<CfgCommonDlg>
+			<Item id="1005" name="选择显示语言" />
+			<Item id="1001" name="开机自启动" />
+			<Item id="1013" name="关闭屏幕" />
+		</CfgCommonDlg>
+		<CfgWorkTraceDlg>
+			<Text id="BEGIN_MINUTES" name="通知开始（分钟）" />
+			<Text id="START_TIME" name="开始时间" />
+			<Text id="END_TIME" name="结束时间" />
+			<Text id="UNTIL_MINUTES" name="通知结束（分钟）" />
+			<Item id="1008" name="每日上班时间表" />
+			<Item id="1016" name="增加" />
+			<Item id="1017" name="删除" />
+			<CfgWorkSpanDlg title="工作时间区间">
+				<Item id="1009" name="通知开始（分钟）" />
+				<Item id="1006" name="开始时间" />
+				<Item id="1007" name="结束时间" />
+				<Item id="1010" name="通知结束（分钟）" />
+				<Item id="1" name="确定" />
+				<Item id="2" name="取消" />
+			</CfgWorkSpanDlg>
+		</CfgWorkTraceDlg>
+	</CfgDlg>
+	<MainDlg title="优孩">
+		<Text id="SURE_TO_LEAVE" name="确定要退出?" />
+		<Text id="MENU_EXIT" name="退出" />
+	</MainDlg>
+	<KqInformDlg title="提醒">
+		<Text id="NOTIFICATION_MSG" name="您在 %02d:%02d 打过卡了吗？" />
+		<Item id="1" name="打卡" />
+		<Item id="2" name="过一会提醒" />
+	</KqInformDlg>
+</expert>
+</root>

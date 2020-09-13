@@ -1,0 +1,5 @@
+LIBRARY MSG
+
+EXPORTS
+	Start @1
+	Stop @2

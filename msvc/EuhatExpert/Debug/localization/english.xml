@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<expert>
+	<CfgDlg title="Setting">
+		<Text id="GENERAL" name="General" />
+		<Text id="WORK_TRACE" name="Work Trace" />
+		<CfgCommonDlg>
+			<Item id="1005" name="Select display language" />
+			<Item id="1001" name="Auto start when booting" />
+			<Item id="1013" name="Power off screen" />
+		</CfgCommonDlg>
+		<CfgWorkTraceDlg>
+			<Text id="BEGIN_MINUTES" name="Begin Minutes" />
+			<Text id="START_TIME" name="Start Time" />
+			<Text id="END_TIME" name="End Time" />
+			<Text id="UNTIL_MINUTES" name="Until Minutes" />
+			<Item id="1008" name="Daily Work Attendance Regulation" />
+			<Item id="1016" name="Add" />
+			<Item id="1017" name="Delete" />
+			<CfgWorkSpanDlg title="Work Span">
+				<Item id="1009" name="Begin Minutes" />
+				<Item id="1006" name="Start Time" />
+				<Item id="1007" name="End Time" />
+				<Item id="1010" name="Until Minutes" />
+				<Item id="1" name="OK" />
+				<Item id="2" name="Cancel" />
+			</CfgWorkSpanDlg>
+		</CfgWorkTraceDlg>
+	</CfgDlg>
+	<MainDlg title="Euhat Expert">
+		<Text id="SURE_TO_LEAVE" name="Are you sure to leave?" />
+		<Text id="MENU_EXIT" name="Exit" />
+	</MainDlg>
+	<KqInformDlg title="Time Inform">
+		<Text id="NOTIFICATION_MSG" name="Have you checked at %02d:%02d?" />
+		<Item id="1" name="Check" />
+		<Item id="2" name="Inform Later" />
+	</KqInformDlg>
+</expert>
+</root>

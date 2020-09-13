@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{8acfcc7a-31a9-458a-b868-4c7bb8985457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\base">
+      <UniqueIdentifier>{367beae1-a67f-479a-9e4e-a1c6171f16cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\cfg">
+      <UniqueIdentifier>{11c2929e-170d-449e-83a4-5c4cf78fa01c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\local">
+      <UniqueIdentifier>{239ffe39-e6c7-4cbf-bed6-6e9b3adce4cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\peer">
+      <UniqueIdentifier>{2a71f01b-903a-4bf7-b0c4-b81b36865b81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\local\FileServer">
+      <UniqueIdentifier>{e6470995-ba24-48cb-9a61-76162674c19d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\local\WorkTrace">
+      <UniqueIdentifier>{d055d480-5b01-4170-a7b2-00802ca16215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main\peer\FileMan">
+      <UniqueIdentifier>{517b767b-5b5e-4df0-a3c9-3fafbb5f6eef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mfc">
+      <UniqueIdentifier>{edb67ad0-053c-4069-8c1c-e9844579d132}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Expert.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Expert.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Expert.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\icon_che.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\icon_check_off.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\icon2.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\icon_check_on.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EuhatLeftDlg.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="EuhatRightDlg.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Expert.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpertDlg.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="KqInformDlg.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="MfcBasePage.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBarDlg.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="base\EuhatBase.cpp">
+      <Filter>main\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\EuhatWtPayload.cpp">
+      <Filter>main\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cfg\CfgCommonDlg.cpp">
+      <Filter>main\cfg</Filter>
+    </ClCompile>
+    <ClCompile Include="cfg\CfgDlg.cpp">
+      <Filter>main\cfg</Filter>
+    </ClCompile>
+    <ClCompile Include="cfg\CfgWorkSpanDlg.cpp">
+      <Filter>main\cfg</Filter>
+    </ClCompile>
+    <ClCompile Include="cfg\CfgWorkTraceDlg.cpp">
+      <Filter>main\cfg</Filter>
+    </ClCompile>
+    <ClCompile Include="local\EuhatLocalDlg.cpp">
+      <Filter>main\local</Filter>
+    </ClCompile>
+    <ClCompile Include="local\WorkTrace\WorkSpan.cpp">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClCompile>
+    <ClCompile Include="local\WorkTrace\WorkTrace.cpp">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClCompile>
+    <ClCompile Include="local\WorkTrace\WorkTraceChart.cpp">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClCompile>
+    <ClCompile Include="local\WorkTrace\WorkTraceDlg.cpp">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClCompile>
+    <ClCompile Include="peer\EuhatPeerDlg.cpp">
+      <Filter>main\peer</Filter>
+    </ClCompile>
+    <ClCompile Include="peer\FileMan\FileManDlg.cpp">
+      <Filter>main\peer\FileMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\mfc\JyListBox.cpp">
+      <Filter>mfc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\mfc\OpMfc.cpp">
+      <Filter>mfc</Filter>
+    </ClCompile>
+    <ClCompile Include="local\FileServer\FileServerDlg.cpp">
+      <Filter>main\local\FileServer</Filter>
+    </ClCompile>
+    <ClCompile Include="peer\FileMan\FileManCfgDlg.cpp">
+      <Filter>main\peer\FileMan</Filter>
+    </ClCompile>
+    <ClCompile Include="peer\FileMan\FileManSubDlg.cpp">
+      <Filter>main\peer\FileMan</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\mfc\JyListCtrl.cpp">
+      <Filter>mfc</Filter>
+    </ClCompile>
+    <ClCompile Include="peer\FileMan\EuhatCertificateDlg.cpp">
+      <Filter>main\peer\FileMan</Filter>
+    </ClCompile>
+    <ClCompile Include="peer\FileMan\FmFileDlg.cpp">
+      <Filter>main\peer\FileMan</Filter>
+    </ClCompile>
+    <ClCompile Include="base\EuhatMacHdd.cpp">
+      <Filter>main\base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EuhatLeftDlg.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="EuhatRightDlg.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="Expert.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpertDlg.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="KqInformDlg.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="MfcBasePage.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBarDlg.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="base\EuhatBase.h">
+      <Filter>main\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\EuhatWtPayload.h">
+      <Filter>main\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\stdafx.h">
+      <Filter>main\base</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\CfgCommonDlg.h">
+      <Filter>main\cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\CfgDlg.h">
+      <Filter>main\cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\CfgWorkSpanDlg.h">
+      <Filter>main\cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\CfgWorkTraceDlg.h">
+      <Filter>main\cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="local\EuhatLocalDlg.h">
+      <Filter>main\local</Filter>
+    </ClInclude>
+    <ClInclude Include="local\WorkTrace\WorkSpan.h">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClInclude>
+    <ClInclude Include="local\WorkTrace\WorkTrace.h">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClInclude>
+    <ClInclude Include="local\WorkTrace\WorkTraceChart.h">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClInclude>
+    <ClInclude Include="local\WorkTrace\WorkTraceDlg.h">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClInclude>
+    <ClInclude Include="peer\EuhatPeerDlg.h">
+      <Filter>main\peer</Filter>
+    </ClInclude>
+    <ClInclude Include="peer\FileMan\FileManDlg.h">
+      <Filter>main\peer\FileMan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\mfc\JyListBox.h">
+      <Filter>mfc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\mfc\OpMfc.h">
+      <Filter>mfc</Filter>
+    </ClInclude>
+    <ClInclude Include="local\FileServer\FileServerDlg.h">
+      <Filter>main\local\FileServer</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="peer\FileMan\FileManCfgDlg.h">
+      <Filter>main\peer\FileMan</Filter>
+    </ClInclude>
+    <ClInclude Include="peer\FileMan\stdafx.h">
+      <Filter>main\peer\FileMan</Filter>
+    </ClInclude>
+    <ClInclude Include="peer\FileMan\FileManSubDlg.h">
+      <Filter>main\peer\FileMan</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\euhat\mfc\JyListCtrl.h">
+      <Filter>mfc</Filter>
+    </ClInclude>
+    <ClInclude Include="peer\FileMan\EuhatCertificateDlg.h">
+      <Filter>main\peer\FileMan</Filter>
+    </ClInclude>
+    <ClInclude Include="local\WorkTrace\stdafx.h">
+      <Filter>main\local\WorkTrace</Filter>
+    </ClInclude>
+    <ClInclude Include="peer\FileMan\FmFileDlg.h">
+      <Filter>main\peer\FileMan</Filter>
+    </ClInclude>
+    <ClInclude Include="base\EuhatMacHdd.h">
+      <Filter>main\base</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

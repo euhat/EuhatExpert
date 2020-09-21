@@ -205,7 +205,7 @@ void FileManSubDlg::fmscOnRefresh()
 		else if (t->type_ == FmTask::TypeUpload)
 		{
 			FmTaskUpload *task = (FmTaskUpload *)t;
-			name = task->peerPath_.get();
+			name = task->localPath_.get();
 			if (task->offset_ < 0)
 				detail = "uploading...";
 			else

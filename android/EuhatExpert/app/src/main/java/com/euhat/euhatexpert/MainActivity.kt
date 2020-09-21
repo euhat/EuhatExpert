@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
             ex.printStackTrace()
         }
 
+        textVersion.setText(textVersion.text.toString() + " " + getBuildTag())
+
         requestPermission()
 
         //writeLog("hi, bingo!")
@@ -66,6 +68,8 @@ class MainActivity : AppCompatActivity() {
                 startServer(port, visitCode)
                 btnStart.isEnabled = false
                 btnEnd.isEnabled = true
+                editPort.isEnabled = false
+                editVisitCode.isEnabled = false
             }
         })
 
@@ -74,6 +78,8 @@ class MainActivity : AppCompatActivity() {
                 stopServer()
                 btnEnd.isEnabled = false
                 btnStart.isEnabled = true
+                editPort.isEnabled = true
+                editVisitCode.isEnabled = true
             }
         })
     }
@@ -136,6 +142,7 @@ class MainActivity : AppCompatActivity() {
     external fun getVisitCode(mac:String): String
     external fun startServer(port:Int, visitCode:String): Int
     external fun stopServer(): Int
+    external fun getBuildTag(): String
 
     fun getHostIP(): String? {
 

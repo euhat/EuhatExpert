@@ -8,6 +8,7 @@
 #include <common/JyTcpSelector.h>
 #include <linux/if.h>
 #include <sys/stat.h>
+#include <../config.h>
 
 using namespace std;
 
@@ -84,9 +85,15 @@ public:
 
 unique_ptr<EuhatApp> theApp;
 
+extern "C" JNIEXPORT jstring JNICALL Java_com_euhat_euhatexpert_MainActivity_getBuildTag(
+        JNIEnv* env,
+        jobject) {
+    return env->NewStringUTF(BUILD_TAG);
+}
+
 extern "C" JNIEXPORT jstring JNICALL Java_com_euhat_euhatexpert_MainActivity_getVisitCode(
         JNIEnv* env,
-        jobject, /* this */
+        jobject,
         jstring jMac) {
 
     const char *mac = env->GetStringUTFChars(jMac, JNI_FALSE);

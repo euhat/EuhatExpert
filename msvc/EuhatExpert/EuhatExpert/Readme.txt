@@ -1,6 +1,5 @@
 Euhat Expert
 ===========
-(last update: 21:02 2020/3/1)
 
 Features
 ----------

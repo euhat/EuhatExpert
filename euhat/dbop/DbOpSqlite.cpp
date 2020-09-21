@@ -2,6 +2,7 @@
 #include <common/OpCommon.h>
 #include "DbOpSqlite.h"
 #include <sqlite/sqlite3euhat.h>
+#include <../config.h>
 #include <EuhatPostDef.h>
 
 DbOpSqlite::DbOpSqlite()
@@ -48,11 +49,6 @@ static string encryptName(const char *str)
 	buf[i] = 0;
 	return buf;
 }
-
-#define DB_KEY_1 "7*$"
-#define DB_KEY_2 "%3f>M"
-#define DB_KEY_3 "G!@+"
-#define DB_KEY_4 "\\Y"
 
 int DbOpSqlite::openFileDbEncrypted(const char *dbPath)
 {

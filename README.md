@@ -22,4 +22,7 @@ This is an open source code of Euhat Expert.
 1. jpeg-9c
 2. openssl
 
+## FAQ
+1. how to build jpeg.lib? you can refer to http://euhat.com/wp/2019/04/28/libjpeg%e8%af%bb%e7%83%82%e6%96%87%e4%bb%b6%e5%87%ba%e5%bc%82%e5%b8%b80xc0000005/
+
 Have any question, welcome to contact me through email: euhat@hotmail.com

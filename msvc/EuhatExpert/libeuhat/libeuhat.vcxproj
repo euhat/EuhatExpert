@@ -104,6 +104,7 @@
     <ClInclude Include="..\..\..\euhat\openssl\symhacks.h" />
     <ClInclude Include="..\..\..\euhat\openssl\trace.h" />
     <ClInclude Include="..\..\..\euhat\openssl\types.h" />
+    <ClInclude Include="..\..\..\euhat\os\EuhatFileHandles.h" />
     <ClInclude Include="..\..\..\euhat\os\EuhatPath.h" />
     <ClInclude Include="..\..\..\euhat\os\win32\apihook\APIHook.hpp" />
     <ClInclude Include="..\..\..\euhat\os\win32\apihook\gdi\BaseHook.hpp" />
@@ -228,6 +229,7 @@
     <ClCompile Include="..\..\..\euhat\openssl\bn\ctype.c" />
     <ClCompile Include="..\..\..\euhat\openssl\bn\rsaz_exp.c" />
     <ClCompile Include="..\..\..\euhat\openssl\mem.c" />
+    <ClCompile Include="..\..\..\euhat\os\EuhatFileHandles.cpp" />
     <ClCompile Include="..\..\..\euhat\os\EuhatPath.cpp" />
     <ClCompile Include="..\..\..\euhat\os\win32\EuhatBackWnd.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>

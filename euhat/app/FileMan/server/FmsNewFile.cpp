@@ -5,6 +5,7 @@
 #include "FmsNewFile.h"
 #include "../common/FileManType.h"
 #include "../common/FileManFileOp.h"
+#include <os/EuhatFileHandles.h>
 #include <EuhatPostDef.h>
 
 void FmsNewFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
@@ -21,7 +22,7 @@ void FmsNewFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 	}
 	else
 	{
-		WhFileGuard g(whFopen(path.c_str(), "wb+"));
+		WhFileGuard g(EuhatFileHandles::getInstance()->fopen(path.c_str(), "wb+"));
 		retResult = (g.fp_ != NULL);
 	}
 

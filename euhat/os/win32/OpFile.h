@@ -23,7 +23,6 @@ struct RemoveOldFilesParam
 	int gigas;
 
 	int init(const char *param);
-	string toString();
 };
 
 int getDiskUsage(const char driveLetter, int &totalSpace, int &freeSpace);

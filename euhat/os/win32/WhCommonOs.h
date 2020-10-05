@@ -46,6 +46,11 @@ do { \
 #define whFtell64 _ftelli64
 #define whStrToInt64 _atoi64
 
+#define EUHAT_PATH_BASE ""
+#define EUHAT_PATH_DB EUHAT_PATH_BASE "euhat/"
+#define EUHAT_PATH_FILES EUHAT_PATH_BASE "files/"
+#define EUHAT_PATH_CLIPBOARD EUHAT_PATH_BASE "clipboard/"
+
 int gettimeofday(struct timeval *tp, void *tzp);
 
 #pragma comment(lib,"WS2_32.lib")

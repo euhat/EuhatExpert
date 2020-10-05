@@ -111,22 +111,6 @@ int RemoveOldFilesParam::init(const char *param)
 	return 1;
 }
 
-string RemoveOldFilesParam::toString()
-{
-	char buf[1024];
-
-	if (style == 0)
-	{
-		sprintf(buf, "删除%d天以前文件", days);
-	}
-	else
-	{
-		sprintf(buf, "删除旧文件使磁盘剩余空间大于%dg", gigas);
-	}
-
-	return buf;
-}
-
 int getDiskUsage(const char driveLetter, int &totalSpace, int &freeSpace)
 {
 	BOOL result;
@@ -154,8 +138,6 @@ int getDiskUsage(const char driveLetter, int &totalSpace, int &freeSpace)
 
 void cleanOldFiles(const char *dir, RemoveOldFilesParam *param)
 {
-	DBG(("开始删除[%s]中的旧文件。\n", dir));
-
 	time_t tn = time(NULL);
 
 	list<RunThroughtFilesResult> sourceFiles;
@@ -175,7 +157,6 @@ void cleanOldFiles(const char *dir, RemoveOldFilesParam *param)
 				totalRemoved++;
 			}
 		}
-		DBG(("按删除%d天以前的文件的规则，删除了%d个文件。\n", param->days, totalRemoved));
 	}
 	else
 	{

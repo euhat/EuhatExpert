@@ -3,6 +3,7 @@
 #include <common/WhCommon.h>
 #include "SimpleFileOp.h"
 #include "SimplePacket.h"
+#include <os/EuhatFileHandles.h>
 #include <EuhatPostDef.h>
 
 void sfReadFile(JyDataWriteStream &ds, const char *path, int64_t pos, int len)
@@ -11,7 +12,7 @@ void sfReadFile(JyDataWriteStream &ds, const char *path, int64_t pos, int len)
 
 	int result = SfResultOk;
 
-	WhFileGuard g(fopen(path, "rb"));
+	WhFileGuard g(EuhatFileHandles::getInstance()->fopen(path, "rb"));
 	if (NULL == g.fp_)
 	{
 		ds.put((int)SfResultFileNotExist);

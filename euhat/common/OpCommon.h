@@ -46,6 +46,7 @@ string wstrToGb(const wchar_t *str);
 
 int memToFile(const char *path, const char *pData, int iLen);
 int memFromFile(const char *path, char *pData, int iLen);
+char *memFromWholeFile(const char *path, unsigned int *len);
 int loadKVMapFromFile(const char *filePath, map<string, string> &kvMap);
 int saveKVMapToFile(const char *filePath, map<string, string> &kvMap);
 

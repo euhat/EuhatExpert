@@ -5,6 +5,7 @@
 #include "FmTask.h"
 #include "FmScheduler.h"
 #include "FileManFileOp.h"
+#include <os/EuhatFileHandles.h>
 #include <EuhatPostDef.h>
 
 FmLocal::FmLocal(FmScheduler *scheduler)
@@ -62,7 +63,7 @@ void FmLocal::onNewFile(FmTaskNew *task)
 	}
 	else
 	{
-		WhFileGuard g(whFopen(path.c_str(), "wb+"));
+		WhFileGuard g(EuhatFileHandles::getInstance()->fopen(path.c_str(), "wb+"));
 		result = (g.fp_ != NULL);
 	}
 	if (task->needInformUi_)

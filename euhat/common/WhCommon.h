@@ -10,6 +10,7 @@
 #define WH_PACK_INT64(_dwHigh,_dwLow) (((int64_t)(_dwHigh)) << 32 | ((int64_t)(_dwLow)))
 
 FILE *whFopen(const char *path, const char *mode);
+void whFClose(FILE *fp);
 int64_t whGetFileSize(const char *path);
 string whGetAbsolutePath(const char *path);
 void whGetDiskUsage(const char *path, int64_t &totalSpaceInMB, int64_t &freeSpaceInMB);
@@ -26,6 +27,8 @@ class JyDataWriteStream;
 int whGetSubFiles(const char *path, JyDataWriteStream &ds);
 string whGetHostName();
 void whGetSysInfo(JyDataWriteStream &ds);
+
+void whUpdateClipboard(const char *msg);
 
 struct WhTimeVal
 {
@@ -58,19 +61,4 @@ struct WhTimeVal
 		t += t_.tv_usec % 1000;
 		return t;
 	}
-};
-
-class WhFileGuard
-{
-public:
-	WhFileGuard(FILE *fp)
-	{
-		fp_ = fp;
-	}
-	~WhFileGuard()
-	{
-		if (NULL != fp_)
-			fclose(fp_);
-	}
-	FILE *fp_;
 };

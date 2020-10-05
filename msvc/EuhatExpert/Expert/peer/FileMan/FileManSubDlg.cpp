@@ -39,6 +39,8 @@ BEGIN_MESSAGE_MAP(FileManSubDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_LOCAL_COPY_TO_REMOTE, &FileManSubDlg::OnBnClickedBtnLocalCopyToRemote)
 	ON_BN_CLICKED(IDC_BTN_REMOTE_MOVE_TO_LOCAL, &FileManSubDlg::OnBnClickedBtnRemoteMoveToLocal)
 	ON_BN_CLICKED(IDC_BTN_LOCAL_MOVE_TO_REMOTE, &FileManSubDlg::OnBnClickedBtnLocalMoveToRemote)
+	ON_BN_CLICKED(IDC_BTN_COPY_CLIPBOARD_TO_REMOTE, &FileManSubDlg::OnBnClickedBtnCopyClipboardToRemote)
+	ON_BN_CLICKED(IDC_BTN_COPY_CLIPBOARD_FROM_REMOTE, &FileManSubDlg::OnBnClickedBtnCopyClipboardFromRemote)
 END_MESSAGE_MAP()
 
 void FileManSubDlg::fmscNotify()
@@ -150,6 +152,8 @@ void FileManSubDlg::fmscNeedReconnect()
 
 void FileManSubDlg::fmscOnRefresh()
 {
+	onClipboardFileComing();
+
 	parentDlg_->listTask_->rows_.clear();
 
 	WhMutexGuard guard(&scheduler_->mutex_);
@@ -508,3 +512,107 @@ void FileManSubDlg::OnBnClickedBtnLocalMoveToRemote()
 	transfer(0, 1);
 }
 
+void FileManSubDlg::OnBnClickedBtnCopyClipboardToRemote()
+{
+	EuhatPath localPath;
+	localPath.isUnix_ = dlgLocal_->curDir_.isUnix_;
+	string dir = "clipboard";
+	localPath.goSub(dir.c_str());
+
+	string fileName = "client.txt";
+	localPath.goSub(fileName.c_str());
+
+	opMkDir(dir.c_str());
+	string localPathStr = localPath.toStr();
+
+	HWND hWnd = GetSafeHwnd();
+	::OpenClipboard(hWnd);
+	HANDLE hClipMemory = ::GetClipboardData(CF_UNICODETEXT);
+	DWORD dwLength = GlobalSize(hClipMemory);
+	LPBYTE lpClipMemory = (LPBYTE)GlobalLock(hClipMemory);
+	string utf8Buf = wstrToUtf8((wchar_t *)lpClipMemory);
+	memToFile(localPathStr.c_str(), (char*)utf8Buf.c_str(), utf8Buf.length());
+	GlobalUnlock(hClipMemory);
+	::CloseClipboard();
+
+	EuhatPath remotePath;
+	remotePath.isUnix_ = dlgRemote_->curDir_.isUnix_;
+	remotePath.goSub(dir.c_str());
+	remotePath.goSub(fileName.c_str());
+
+	shared_ptr<FmTaskDownload> task(new FmTaskUpload());
+	task->localPath_.reset(opStrDup(localPathStr.c_str()));
+	task->peerPath_.reset(opStrDup(remotePath.toStr(0).c_str()));
+	task->totalFileSize_ = whGetFileSize(localPathStr.c_str());
+	task->lastWriteTime_ = time(NULL);
+	task->offset_ = -1;
+	scheduler_->add(task);
+
+	scheduler_->notifyEngine();
+	fmscOnRefresh();
+}
+
+void FileManSubDlg::OnBnClickedBtnCopyClipboardFromRemote()
+{
+	EuhatPath localPath;
+	localPath.isUnix_ = dlgLocal_->curDir_.isUnix_;
+	string dir = "clipboard";
+	localPath.goSub(dir.c_str());
+
+	string fileName = "server.txt";
+	localPath.goSub(fileName.c_str());
+
+	opMkDir(dir.c_str());
+	string localPathStr = localPath.toStr();
+
+	opUnlink(localPathStr.c_str());
+
+	EuhatPath remotePath;
+	remotePath.isUnix_ = dlgRemote_->curDir_.isUnix_;
+	remotePath.goSub(dir.c_str());
+	remotePath.goSub(fileName.c_str());
+
+	shared_ptr<FmTaskDownload> task(new FmTaskDownload());
+	task->localPath_.reset(opStrDup(localPathStr.c_str()));
+	task->peerPath_.reset(opStrDup(remotePath.toStr(0).c_str()));
+	task->totalFileSize_ = 0;
+	task->lastWriteTime_ = time(NULL);
+	task->offset_ = -1;
+	scheduler_->add(task);
+
+	scheduler_->notifyEngine();
+	fmscOnRefresh();
+}
+
+void FileManSubDlg::onClipboardFileComing()
+{
+	EuhatPath localPath;
+	localPath.isUnix_ = dlgLocal_->curDir_.isUnix_;
+	string dir = "clipboard";
+	localPath.goSub(dir.c_str());
+
+	string fileName = "server.txt";
+	localPath.goSub(fileName.c_str());
+
+	opMkDir(dir.c_str());
+	string localPathStr = localPath.toStr();
+	if (!doesFileExist(localPathStr.c_str()))
+		return;
+
+	unsigned int len;
+	unique_ptr<char[]> buf(memFromWholeFile(localPathStr.c_str(), &len));
+
+	wstring wstrBuf = utf8ToWstr(buf.get());
+	len = (wstrBuf.length() + 1) * sizeof(wchar_t);
+
+	HANDLE hGlobalMemory = GlobalAlloc(GHND, len + 1);
+	LPBYTE lpGlobalMemory = (LPBYTE)GlobalLock(hGlobalMemory);
+	memcpy(lpGlobalMemory, wstrBuf.c_str(), len);
+	GlobalUnlock(hGlobalMemory);
+
+	HWND hWnd = GetSafeHwnd();
+	::OpenClipboard(hWnd);
+	::EmptyClipboard();
+	::SetClipboardData(CF_UNICODETEXT, hGlobalMemory);
+	::CloseClipboard();
+}

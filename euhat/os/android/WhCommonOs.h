@@ -74,3 +74,8 @@ int whFseek64(FILE *stream, int64_t offset, int origin);
 int64_t whFtell64(FILE *stream);
 
 #define whUnlink unlink
+
+#define EUHAT_PATH_BASE "/sdcard/Android/data/com.euhat.euhatexpert/"
+#define EUHAT_PATH_DB EUHAT_PATH_BASE "euhat/"
+#define EUHAT_PATH_FILES EUHAT_PATH_BASE "files/"
+#define EUHAT_PATH_CLIPBOARD EUHAT_PATH_BASE "clipboard/"

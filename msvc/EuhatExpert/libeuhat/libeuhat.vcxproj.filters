@@ -445,6 +445,9 @@
     <ClInclude Include="..\..\..\euhat\openssl\bn\internal\nelem.h">
       <Filter>euhat\openssl\bn\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\euhat\os\EuhatFileHandles.h">
+      <Filter>euhat\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\euhat\common\JyMsgLoop.cpp">
@@ -728,6 +731,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\euhat\openssl\bn\bn_rand.c">
       <Filter>euhat\openssl\bn</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\os\EuhatFileHandles.cpp">
+      <Filter>euhat\os</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

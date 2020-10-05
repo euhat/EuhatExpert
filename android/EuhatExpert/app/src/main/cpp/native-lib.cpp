@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <common/OpCommon.h>
+#include <KotlinStub.h>
 #include <dbop/DbOpIni.h>
 #include "macHdd.h"
 #include <app/FileMan/common/FileManFileOp.h>
@@ -14,46 +15,15 @@ using namespace std;
 
 #define INI_SECTION_FILE_SERVER "fileServer"
 
-void testFromJava(JNIEnv *env)
-{
-    jclass clazz = env->FindClass("com/euhat/euhatexpert/OpFileJni");
-    jclass classSaved = (jclass)env->NewGlobalRef(clazz);
-    env->DeleteLocalRef(clazz);
-
-    jmethodID construct = env->GetMethodID(classSaved, "<init>", "()V");
-
-    jobject obj = env->NewObject(classSaved, construct);
-    jobject objSaved = (jobject)env->NewGlobalRef(obj);
-    env->DeleteLocalRef(obj);
-
-    // need not global ref jmethodID
-    jmethodID methodCallFromCpp = env->GetMethodID(classSaved, "callFromCpp", "(Ljava/lang/String;I)Ljava/lang/String;");
-
-    jstring message = env->NewStringUTF("调用成功了");
-    jstring jResult = (jstring)env->CallObjectMethod(objSaved, methodCallFromCpp, message, 1);
-
-    const char *result = env->GetStringUTFChars(jResult, JNI_FALSE);
-    env->ReleaseStringUTFChars(jResult, result);
-
-    env->DeleteLocalRef(message);
-
-    env->DeleteGlobalRef(objSaved);
-
-    env->DeleteGlobalRef(classSaved);
-}
-
 class EuhatApp
 {
 public:
     string getDbPath()
     {
-        string path = "/sdcard/Android/data/com.euhat.euhatexpert/";
-        mkdir(path.c_str(), 0777);
-        string dbDir = path + "euhat/";
-        mkdir(dbDir.c_str(), 0777);
-        string fileDir = path + "files/";
-        mkdir(fileDir.c_str(), 0777);
-        return dbDir + DEFAULT_SQLITE_DB_FILENAME;
+        mkdir(EUHAT_PATH_BASE, 0777);
+        mkdir(EUHAT_PATH_DB, 0777);
+        mkdir(EUHAT_PATH_FILES, 0777);
+        return EUHAT_PATH_DB DEFAULT_SQLITE_DB_FILENAME;
     }
 
     void openDb()
@@ -130,7 +100,7 @@ extern "C" JNIEXPORT jint JNICALL Java_com_euhat_euhatexpert_MainActivity_startS
     JNIEnv *env,
     jobject pThis, jint port, jstring jVisitCode) {
 
-    testFromJava(env);
+    KotlinStub::getInstance()->init(env, pThis);
 
     theApp.reset(new EuhatApp());
     theApp->openDb();

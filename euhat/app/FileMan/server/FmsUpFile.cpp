@@ -48,6 +48,7 @@ void FmsUpFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 			if (retResult == FmResultOk || retResult == FmResultFileReachEnd)
 			{
 				writeSize = fmWriteFile(ds, path.c_str());
+				DBG(("fms up file:[%s], writeSize:[%d]\n", path.c_str(), writeSize));
 				if (writeSize < 0)
 					retResult = FmResultFailed;
 				else

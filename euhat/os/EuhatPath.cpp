@@ -35,14 +35,17 @@ void EuhatPath::inStr(const char *path)
 			path_.push_back(move(*it));
 }
 
-string EuhatPath::toStr()
+string EuhatPath::toStr(int isAbsoluteDir)
 {
 	char split = '\\';
 	ostringstream ss;
 	if (isUnix_)
 	{
 		split = '/';
-		ss << split;
+		if (isAbsoluteDir)
+		{
+			ss << split;
+		}
 	}
 	for (auto it = path_.begin(); it != path_.end(); it++)
 	{

@@ -11,17 +11,19 @@
 #include <string.h>
 #include <sys/system_properties.h>
 #include <json/json.h>
+#include <jni.h>
+#include <os/EuhatFileHandles.h>
 
 #ifdef EUHAT_DEBUG_ENABLE
 #include <android/log.h>
 
 const char *LOG_TAG = "EuhatLog";
 
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
-#define LOGT(...) __android_log_print(ANDROID_LOG_INFO,"alert",__VA_ARGS__)
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
-#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__)
-#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
+#define LOGT(...) __android_log_print(ANDROID_LOG_INFO, "alert", __VA_ARGS__)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 
 void ivrLog(const char *format, ...)
 {
@@ -128,10 +130,14 @@ int writeIniString(const char *iniFileName, const char *sectionName, const char 
 
 string getCurrentDir()
 {
+#if 0
 	char curPath[1024];
 	getcwd(curPath, sizeof(curPath) - 1);
 
 	return curPath;
+#else
+	return EUHAT_PATH_BASE;
+#endif
 }
 
 int opMkDir(const char *path)
@@ -158,6 +164,11 @@ FILE *whFopen(const char *path, const char *mode)
 	return fopen(path, mode);
 }
 
+void whFClose(FILE *fp)
+{
+    fclose(fp);
+}
+
 int whFseek64(FILE *stream, int64_t offset, int origin)
 {
 	if (feof(stream))
@@ -182,14 +193,16 @@ int64_t whFtell64(FILE *stream)
 	return -1;
 }
 
-int opUnlink(const char *path)
+int opUnlink(const char *filePath)
 {
-	return unlink(path) == 0;
+	string path = whGetAbsolutePath(filePath);
+	return unlink(path.c_str()) == 0;
 }
 
-int opRmDir(const char *path)
+int opRmDir(const char *filePath)
 {
-	return rmdir(path) == 0;
+	string path = whGetAbsolutePath(filePath);
+	return rmdir(path.c_str()) == 0;
 }
 
 string whPathGetContainer(const char *path)
@@ -243,7 +256,8 @@ void whDirMakeRecursively(const char *path)
 
 int whPrepareFolder(const char *targetPath)
 {
-	string targetContainerDir = whPathGetContainer(targetPath);
+	string path = whGetAbsolutePath(targetPath);
+	string targetContainerDir = whPathGetContainer(path.c_str());
 	whDirMakeRecursively(targetContainerDir.c_str());
 
 	return 1;
@@ -256,7 +270,8 @@ char *opStrDup(const char *str)
 
 int doesFileExist(const char *filePath)
 {
-	int result = access(filePath, 0);
+	string path = whGetAbsolutePath(filePath);
+	int result = access(path.c_str(), 0);
 	if (result < 0)
 		return 0;
 	return 1;
@@ -266,7 +281,7 @@ string whGetAbsolutePath(const char *path)
 {
 	if (path[0] == '/')
 		return path;
-	return getCurrentDir() + '/' + path;
+	return getCurrentDir() + path;
 }
 
 void whGetDiskUsage(const char *path, int64_t &totalSpaceInMB, int64_t &freeSpaceInMB)
@@ -362,6 +377,6 @@ void whGetSysInfo(JyDataWriteStream &ds)
 	ds.putStr(whGetHostName().c_str());
 	ds.put<short>(1); // system type.
 //	ds.putStr("/sdcard");
-//android:requestLegacyExternalStorage="true"
-    ds.putStr("/sdcard/Android/data/com.euhat.euhatexpert/files");
+	//android:requestLegacyExternalStorage="true"
+    ds.putStr(EUHAT_PATH_FILES);
 }

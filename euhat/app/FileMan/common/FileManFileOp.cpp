@@ -11,6 +11,7 @@
 #include "FmTask.h"
 #include "../client/FileManClient.h"
 #include <os/EuhatPath.h>
+#include <os/EuhatFileHandles.h>
 #include <time.h>
 #include <EuhatPostDef.h>
 
@@ -18,14 +19,14 @@ void fmReadFile(JyDataWriteStream &ds, const char *path, int64_t pos, int len)
 {
 	int result = FmResultOk;
 
-	WhFileGuard g(whFopen(path, "rb"));
+	WhFileGuard g(EuhatFileHandles::getInstance()->fopen(path, "rb"));
 	if (NULL == g.fp_)
 	{
 		ds.put((int)FmResultFileNotExist);
 		return;
 	}
 
-	int64_t endPos = whGetFileSize(path);
+	int64_t endPos = whGetFileSize(EuhatFileHandles::getInstance()->fgetPath(g.fp_).c_str());
 	if (endPos < pos)
 	{
 		ds.put((int)FmResultFileSeekExceed);
@@ -60,7 +61,7 @@ void fmReadFile(JyDataWriteStream &ds, const char *path, int64_t pos, int len)
 
 int fmWriteFile(unique_ptr<JyDataReadBlock> &ds, const char *path)
 {
-	WhFileGuard g(whFopen(path, "ab+"));
+	WhFileGuard g(EuhatFileHandles::getInstance()->fopen(path, "ab+"));
 	if (NULL == g.fp_)
 		return -1;
 
@@ -68,7 +69,7 @@ int fmWriteFile(unique_ptr<JyDataReadBlock> &ds, const char *path)
 	int len;
 	char *buf = ds->getBuf(len);
 
-	int64_t fileSize = whGetFileSize(path);
+	int64_t fileSize = whGetFileSize(EuhatFileHandles::getInstance()->fgetPath(g.fp_).c_str());
 	if (pos != fileSize)
 	{
 		if (pos + len == fileSize)

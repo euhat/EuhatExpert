@@ -26,8 +26,10 @@ void FmsDownFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 		dsAck.put((int)FmResultFileNotExist);
 		DBG(("illegal download [%s].\n", path.c_str()));
 	}
-	else
-		fmReadFile(dsAck, path.c_str(), filePos, reqLen);
+	else {
+	    DBG(("down file:[%s], at pos:%lld, reqLen:%d\n", path.c_str(), filePos, reqLen));
+        fmReadFile(dsAck, path.c_str(), filePos, reqLen);
+    }
 
 	parent_->send(sock, dsAck);
 }

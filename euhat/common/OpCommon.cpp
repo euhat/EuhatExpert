@@ -30,6 +30,24 @@ int memFromFile(const char *path, char *pData, int iLen)
 	return 1;
 }
 
+char *memFromWholeFile(const char *path, unsigned int *len)
+{
+	FILE *fp = fopen(path, "rb");
+	if (NULL == fp)
+		return NULL;
+
+	fseek(fp, 0, SEEK_END);
+	*len = ftell(fp);
+	fseek(fp, 0, SEEK_SET);
+
+	char *pData = (char *)malloc(*len + 1);
+	fread(pData, 1, *len, fp);
+	pData[*len] = 0;
+
+	fclose(fp);
+	return pData;
+}
+
 int loadKVMapFromFile(const char *filePath, map<string, string> &kvMap)
 {
 	FILE *fp = fopen(filePath, "r");

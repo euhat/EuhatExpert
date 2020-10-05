@@ -2,6 +2,9 @@ package com.euhat.euhatexpert
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.InputType
@@ -11,14 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.*
+import java.io.BufferedWriter
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStreamWriter
 import java.net.Inet6Address
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.net.SocketException
-import java.nio.charset.StandardCharsets
 import java.util.*
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         try {
             System.loadLibrary("native-lib")
-        } catch (ex:Throwable) {
+        } catch (ex: Throwable) {
             ex.printStackTrace()
         }
 
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         editVisitCode.setText(getVisitCode(getLocalMacAddressFromIp()))
 
         var showPassword = false
-        btnTogglePassword.setOnClickListener(object :View.OnClickListener {
+        btnTogglePassword.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 showPassword = !showPassword
                 if (showPassword) {
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         btnEnd.isEnabled = false;
-        btnStart.setOnClickListener(object: View.OnClickListener {
+        btnStart.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 var port = Integer.parseInt(editPort.getText().toString())
                 var visitCode = editVisitCode.getText().toString()
@@ -73,13 +77,19 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        btnEnd.setOnClickListener(object: View.OnClickListener {
+        btnEnd.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 stopServer()
                 btnEnd.isEnabled = false
                 btnStart.isEnabled = true
                 editPort.isEnabled = true
                 editVisitCode.isEnabled = true
+            }
+        })
+
+        btnClipboardPaste.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                clipboardSave();
             }
         })
     }
@@ -95,7 +105,8 @@ class MainActivity : AppCompatActivity() {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
                         grantResults[1] == PackageManager.PERMISSION_GRANTED &&
                         grantResults[2] == PackageManager.PERMISSION_GRANTED &&
-                        grantResults[3] == PackageManager.PERMISSION_GRANTED) {
+                        grantResults[3] == PackageManager.PERMISSION_GRANTED
+                    ) {
                         afterPermissionsAllowed()
                     } else {
                         AlertDialog.Builder(this)
@@ -139,8 +150,8 @@ class MainActivity : AppCompatActivity() {
             afterPermissionsAllowed()
     }
 
-    external fun getVisitCode(mac:String): String
-    external fun startServer(port:Int, visitCode:String): Int
+    external fun getVisitCode(mac: String): String
+    external fun startServer(port: Int, visitCode: String): Int
     external fun stopServer(): Int
     external fun getBuildTag(): String
 
@@ -189,7 +200,7 @@ class MainActivity : AppCompatActivity() {
 
     fun byte2hex(b: ByteArray): String {
         var hs = StringBuffer(b.size)
-        var stmp = ""
+        var stmp:String
         val len = b.size
         for (n in 0 until len) {
             stmp = Integer.toHexString(b[n].toInt() and 0xFF)
@@ -205,19 +216,42 @@ class MainActivity : AppCompatActivity() {
             Log.e("EuhatLogJava", msg)
 
             val apkFilePath: String = getExternalFilesDir("apk")!!.getAbsolutePath()
-            val fos =
-                FileOutputStream(apkFilePath + "/test.txt", true)
+            val fos = FileOutputStream(apkFilePath + "/test.txt", true)
             val osWriter = OutputStreamWriter(fos)
             val writer = BufferedWriter(osWriter)
             val cal = Calendar.getInstance()
-            val timeStamp = cal[Calendar.MINUTE]
-                .toString() + "-" + cal[Calendar.SECOND] + "-" + cal[Calendar.MILLISECOND] + ": "
+            val timeStamp = cal[Calendar.MINUTE].toString() + "-" + cal[Calendar.SECOND] + "-" + cal[Calendar.MILLISECOND] + ": "
             writer.write(timeStamp)
             writer.write(msg)
             writer.newLine()
+        } catch (e: IOException) {
+            Log.e("EuhatLogJava", e.toString());
+            e.printStackTrace()
+        }
+    }
+
+    private fun clipboardSave() {
+        val clipboard: ClipboardManager = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData: ClipData? = clipboard.getPrimaryClip()
+
+        var text:String = ""
+
+        if (clipData != null && clipData.itemCount > 0) {
+            text = clipData.getItemAt(0).text.toString()
+        }
+
+        if (text.isEmpty())
+            return
+
+        var fileName = "server.txt"
+
+        try {
+            val apkFilePath: String = getExternalFilesDir("../clipboard")!!.getAbsolutePath()
+            val fos = FileOutputStream(apkFilePath + "/" + fileName, false)
+            val osWriter = OutputStreamWriter(fos)
+            val writer = BufferedWriter(osWriter)
+            writer.write(text)
             writer.flush()
-            osWriter.flush()
-            fos.flush()
         } catch (e: IOException) {
             Log.e("EuhatLogJava", e.toString());
             e.printStackTrace()

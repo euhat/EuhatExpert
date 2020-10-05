@@ -35,6 +35,7 @@ public:
 	void transfer(int isDownload, int isMove);
 	void delFile(JyMsgLoop *loop);
 	void newFolder(JyMsgLoop *loop);
+	void onClipboardFileComing();
 
 	FileManDlg *parentDlg_;
 
@@ -57,4 +58,7 @@ protected:
 	afx_msg void OnBnClickedBtnLocalCopyToRemote();
 	afx_msg void OnBnClickedBtnRemoteMoveToLocal();
 	afx_msg void OnBnClickedBtnLocalMoveToRemote();
+public:
+	afx_msg void OnBnClickedBtnCopyClipboardToRemote();
+	afx_msg void OnBnClickedBtnCopyClipboardFromRemote();
 };

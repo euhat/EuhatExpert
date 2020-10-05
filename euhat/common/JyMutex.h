@@ -50,17 +50,21 @@ public:
 
 class WhMutexGuard
 {
-	WhMutex *m_;
 public:
-	WhMutexGuard(WhMutex *m)
+	WhMutexGuard(WhMutex *cs)
 	{
-		m_ = m;
-		whMutexEnter(m_);
+		cs_ = cs;
+		if (NULL == cs_)
+			return;
+		whMutexEnter(cs_);
 	}
 	~WhMutexGuard()
 	{
-		whMutexLeave(m_);
+		if (NULL == cs_)
+			return;
+		whMutexLeave(cs_);
 	}
+	WhMutex *cs_;
 };
 
 template<class T>
@@ -115,4 +119,71 @@ public:
 	{
 		cond_.signal();
 	}
+};
+
+template<class T, class K>
+class JyHistoryList
+{
+public:
+	JyHistoryList(int useLock = 1)
+	{
+		if (useLock)
+			cs_ = new WhMutex();
+		else
+			cs_ = NULL;
+	}
+	~JyHistoryList()
+	{
+		if (NULL != cs_)
+			delete cs_;
+	}
+	struct JyHistorySearch
+	{
+		JyHistorySearch(K key)
+		{
+			key_ = key;
+		}
+		bool operator()(T &entry)
+		{
+			if (entry.key_ == key_)
+				return true;
+			return false;
+		}
+		K key_;
+	};
+	int remove(K key)
+	{
+		WhMutexGuard g(cs_);
+		typename list<T>::iterator it = remove_if(list_.begin(), list_.end(), JyHistorySearch(key));
+		if (it == list_.end())
+			return 0;
+		list_.erase(it, list_.end());
+		return 1;
+	}
+	T *find(K key)
+	{
+		WhMutexGuard g(cs_);
+		typename list<T>::iterator it = find_if(list_.begin(), list_.end(), JyHistorySearch(key));
+		if (it != list_.end())
+			return &*it;
+		return NULL;
+	}
+	T *add(K key)
+	{
+		WhMutexGuard g(cs_);
+		T *t = find(key);
+		if (NULL == t)
+			t = newEntry(key);
+		return t;
+	}
+	T *newEntry(K key)
+	{
+		WhMutexGuard g(cs_);
+		list_.push_back(T());
+		T *entry = &list_.back();
+		entry->key_ = key;
+		return entry;
+	}
+	list<T> list_;
+	WhMutex *cs_;
 };

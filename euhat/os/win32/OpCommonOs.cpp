@@ -7,6 +7,7 @@
 #include <io.h>
 #include <sys/stat.h>
 #include <common/JyDataStream.h>
+#include <os/EuhatFileHandles.h>
 #include <EuhatPostDef.h>
 
 #ifdef EUHAT_DEBUG_ENABLE
@@ -227,7 +228,7 @@ int opMkDir(const char *path)
 
 int64_t whGetFileSize(const char *path)
 {
-	WhFileGuard g(whFopen(path, "rb"));
+	WhFileGuard g(EuhatFileHandles::getInstance()->fopen(path, "rb"));
 	if (NULL == g.fp_)
 	{
 		return 0;
@@ -241,6 +242,11 @@ int64_t whGetFileSize(const char *path)
 FILE *whFopen(const char *path, const char *mode)
 {
 	return _wfopen(utf8ToWstr(path).c_str(), utf8ToWstr(mode).c_str());
+}
+
+void whFClose(FILE* fp)
+{
+	fclose(fp);
 }
 
 int opUnlink(const char *path)
@@ -582,4 +588,9 @@ void whGetSysInfo(JyDataWriteStream &ds)
 	ds.putStr(whGetHostName().c_str());
 	ds.put<short>(0); // system type.
 //	ds.putStr("");
+}
+
+void whUpdateClipboard(const char *msg)
+{
+
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-#define DB_KEY_1 "78$"
-#define DB_KEY_2 "%3b>A"
+#define DB_KEY_1 "7*$"
+#define DB_KEY_2 "%3f>M"
 #define DB_KEY_3 "G!@+"
-#define DB_KEY_4 "\\U"
+#define DB_KEY_4 "\\Y"
 
-#define BUILD_TAG "official"
+#define BUILD_TAG "open-source"

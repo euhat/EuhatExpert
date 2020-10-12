@@ -21,7 +21,7 @@ do { \
 #ifdef X64
 #define RP_USE_HOOK_DLL 0
 #else
-#define RP_USE_HOOK_DLL	1
+#define RP_USE_HOOK_DLL	0
 #endif
 
 typedef BOOL (WINAPI *StartHookProc)(HINSTANCE hinst, HWND hwnd);

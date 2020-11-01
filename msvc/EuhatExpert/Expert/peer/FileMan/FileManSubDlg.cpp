@@ -615,4 +615,6 @@ void FileManSubDlg::onClipboardFileComing()
 	::EmptyClipboard();
 	::SetClipboardData(CF_UNICODETEXT, hGlobalMemory);
 	::CloseClipboard();
+
+	opUnlink(localPathStr.c_str());
 }

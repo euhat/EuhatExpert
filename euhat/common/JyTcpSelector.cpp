@@ -261,7 +261,7 @@ int JyTcpSelector::onRead(WhSockHandle sock)
 	if (it->second->selectType_ == JyTcpSelectAccept)
 	{
 		struct sockaddr_in clientAddress;
-		WhSockLenT clientLen = sizeof(clientAddress);
+		WhSockLen clientLen = sizeof(clientAddress);
 		int clientSock;
 		clientSock = ::accept(sock, (struct sockaddr *)&clientAddress, &clientLen);
 		if (WH_INVALID_SOCKET == clientSock)

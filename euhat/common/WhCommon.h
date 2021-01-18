@@ -4,7 +4,6 @@
 
 #define WhSockAddr sockaddr
 #define WhSockAddrIn sockaddr_in
-#define WhSockLenT socklen_t
 #define whCondWaitTimed(_handle, _mutex, _secs) whCondWaitTimedMsec(_handle, _mutex, _secs * 1000)
 
 #define WH_PACK_INT64(_dwHigh,_dwLow) (((int64_t)(_dwHigh)) << 32 | ((int64_t)(_dwLow)))

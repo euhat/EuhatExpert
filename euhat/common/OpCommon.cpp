@@ -108,7 +108,7 @@ string intToString(int i)
 string int64ToString(int64_t i)
 {
 	char buf[64];
-	sprintf(buf, "%lld", i);
+	sprintf(buf, "%lld", (long long int)i);
 	return buf;
 }
 

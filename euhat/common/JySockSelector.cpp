@@ -4,7 +4,7 @@
 
 void setSockNonBlock(WhSockHandle sock)
 {
-#ifdef WIN32  
+#ifdef _WIN32  
 	unsigned long on_windows = 1;
 	if (ioctlsocket(sock, FIONBIO, &on_windows) < 0)
 #else  

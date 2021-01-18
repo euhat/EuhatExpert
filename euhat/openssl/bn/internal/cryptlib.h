@@ -20,6 +20,11 @@
 #  define BIO_FLAGS_UPLINK_INTERNAL 0
 # endif
 
+#ifdef _WIN32
+#else
+#include <sys/time.h>
+#endif
+
 # include <openssl/crypto.h>
 # include <openssl/buffer.h>
 # include <openssl/bio.h>

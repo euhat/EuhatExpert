@@ -1,4 +1,5 @@
 #include <common/OpCommon.h>
+#include <common/JyDataStream.h>
 #include <iconv.h>
 #include <sys/stat.h>
 #include <sys/statfs.h>
@@ -7,7 +8,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <string.h>
-#include <json/json.h>
 
 #ifdef EUHAT_DEBUG_ENABLE
 void ivrLog(const char *format, ...)
@@ -106,6 +106,13 @@ int opMkDir(const char *path)
 	return mkdir(path, 0755);
 }
 
+int64_t whGetFileSize(const char *path)
+{
+	struct stat64 st;
+	stat64(path, &st);
+	return st.st_size;
+}
+
 int opUnlink(const char *path)
 {
 	return unlink(path);
@@ -167,45 +174,42 @@ time_t whGetFileCreateTime(const char *filePath)
 //    return s.st_mtime;
 }
 
-string whGetSubFiles(const char *path)
+int whGetSubFiles(const char *path, JyDataWriteStream &ds)
 {
-    DIR *dir;
-    dir = opendir(path);
-    if (dir == NULL)
-        return "";
+	DIR *dir;
+	dir = opendir(path);
+	if (dir == NULL)
+		return 0;
 
-    Json::Value jRoot;
+	ds.putStr(path);
 
-    struct dirent *dirInfo;
-    while ((dirInfo = readdir(dir)) != NULL)
-    {
-        if (strcmp(dirInfo->d_name, "..") == 0)
-            continue;
-        if (strcmp(dirInfo->d_name, ".") == 0)
-            continue;
+	struct dirent *dirInfo;
+	while ((dirInfo = readdir(dir)) != NULL)
+	{
+		if (strcmp(dirInfo->d_name, "..") == 0)
+			continue;
+		if (strcmp(dirInfo->d_name, ".") == 0)
+			continue;
 
-        Json::Value obj;
+		string tmpPath = string(path) + "/" + dirInfo->d_name;
 
-        obj["name"] = dirInfo->d_name;
+		struct stat st;
+		stat(tmpPath.c_str(), &st);
+		if (S_ISDIR(st.st_mode))
+		{
+			ds.put<char>(0);
+			ds.putStr(dirInfo->d_name);
+		}
+		else
+		{
+			ds.put<char>(1);
+			ds.putStr(dirInfo->d_name);
+			ds.put<int64_t>(whGetFileSize(tmpPath.c_str()));
+			ds.put<int64_t>((int64_t)whGetFileCreateTime(tmpPath.c_str()));
+		}
+	}
+	closedir(dir);
 
-        string tmpPath = string(path) + "/" + dirInfo->d_name;
-
-        struct stat st;
-        stat(tmpPath.c_str(), &st);
-        if (S_ISDIR(st.st_mode))
-            obj["type"] = "dir";
-        else
-        {
-            obj["type"] = "file";
-            obj["size"] = whGetFileSize(tmpPath.c_str());
-            obj["ctime"] = whGetFileCreateTime(tmpPath.c_str());
-        }
-
-        jRoot.append(obj);
-    }
-    closedir(dir);
-
-    Json::FastWriter writer;
-    string out = writer.write(jRoot);
-    return out;
+	ds.put<char>(2);
+	return 1;
 }

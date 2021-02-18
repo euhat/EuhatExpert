@@ -271,7 +271,7 @@ void FileManSubDlg::fmscOnRefresh()
 		if (idx > 100)
 		{
 			char buf[1024];
-			sprintf(buf, "%d tasks left not show...", scheduler_->tasks_.size() - idx);
+			sprintf(buf, "%d tasks left not shown...", scheduler_->tasks_.size() - idx);
 			row.cells_.push_back(EuhatListCtrl::Cell(utf8ToWstr(buf).c_str()));
 			break;
 		}

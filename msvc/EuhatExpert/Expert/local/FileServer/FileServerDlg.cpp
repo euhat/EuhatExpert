@@ -101,9 +101,15 @@ void FileServerDlg::OnBnClickedBtnStart()
 		MessageBox(_T("Certificate is not generated, can't start."), _T("Error"), 0);
 		return;
 	}
+	
 	CString cstr;
 	GetDlgItemText(IDC_EDIT_VISIT_CODE, cstr);
 	string visitCode = CT2A(cstr);
+	if (visitCode.empty())
+	{
+		MessageBox(_T("Visit Code can't be empty, can't start."), _T("Error"), 0);
+		return;
+	}
 	euhatBase_->ini_->write(INI_SECTION_FILE_SERVER, "visitCode", visitCode.c_str());
 
 	GetDlgItemText(IDC_EDIT_FILE_SRV_PATH, cstr);
@@ -112,6 +118,11 @@ void FileServerDlg::OnBnClickedBtnStart()
 	EuhatPath euPath;
 	euPath.inStr(baseDir.c_str());
 	baseDir = euPath.toStr();
+	if (baseDir.empty())
+	{
+		MessageBox(_T("Share Dir can't be empty, can't start."), _T("Error"), 0);
+		return;
+	}
 	euhatBase_->ini_->write(INI_SECTION_FILE_SERVER, "baseDir", baseDir.c_str());
 
 	FileManServer *fmSrv = (FileManServer *)srv_.get();

@@ -211,7 +211,7 @@ int JyDataDecryptAsymmetric::decrypt(JyDataWriteStream &dsOut, const char *buf, 
 	return 1;
 }
 
-static int xorData(JyDataWriteStream &dsOut, const char *buf, int len, JyBuf &xorBuf)
+int xorData(JyDataWriteStream &dsOut, const char *buf, int len, JyBuf &xorBuf)
 {
 //	dsOut.putBufWithoutLen(buf, len);
 //	return 1;

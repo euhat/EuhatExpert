@@ -448,6 +448,9 @@
     <ClInclude Include="..\..\..\euhat\os\EuhatFileHandles.h">
       <Filter>euhat\os</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\euhat\common\md5.h">
+      <Filter>euhat\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\euhat\common\JyMsgLoop.cpp">
@@ -570,7 +573,7 @@
     <ClCompile Include="..\..\..\euhat\app\FileMan\server\FmsPeerFileList.cpp">
       <Filter>app\FileMan\server</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\euhat\common\base64.cpp">
+    <ClCompile Include="..\..\..\euhat\common\base64.c">
       <Filter>euhat\common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\euhat\common\JyBigNum.cpp">
@@ -734,6 +737,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\euhat\os\EuhatFileHandles.cpp">
       <Filter>euhat\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\md5.c">
+      <Filter>euhat\common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

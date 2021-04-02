@@ -10,7 +10,6 @@
 #include <stdarg.h>
 #include <string.h>
 #include <sys/system_properties.h>
-#include <json/json.h>
 #include <jni.h>
 #include <os/EuhatFileHandles.h>
 

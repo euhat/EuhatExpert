@@ -60,6 +60,7 @@
     <ClInclude Include="..\..\..\euhat\common\JyUdpSelector.h" />
     <ClInclude Include="..\..\..\euhat\common\JyWorkQueue.h" />
     <ClInclude Include="..\..\..\euhat\common\JyWorkThread.h" />
+    <ClInclude Include="..\..\..\euhat\common\md5.h" />
     <ClInclude Include="..\..\..\euhat\common\OpCommon.h" />
     <ClInclude Include="..\..\..\euhat\common\WhCommon.h" />
     <ClInclude Include="..\..\..\euhat\dbop\DbOpIni.h" />
@@ -161,7 +162,7 @@
     <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\client\SimpleFileClient.cpp" />
     <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\common\SimpleFileOp.cpp" />
     <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\server\SimpleFileServer.cpp" />
-    <ClCompile Include="..\..\..\euhat\common\base64.cpp" />
+    <ClCompile Include="..\..\..\euhat\common\base64.c" />
     <ClCompile Include="..\..\..\euhat\common\JyBigNum.cpp" />
     <ClCompile Include="..\..\..\euhat\common\JyBuf.cpp" />
     <ClCompile Include="..\..\..\euhat\common\JyDataEncpyt.cpp" />
@@ -186,6 +187,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\euhat\common\md5.c" />
     <ClCompile Include="..\..\..\euhat\common\OpCommon.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>

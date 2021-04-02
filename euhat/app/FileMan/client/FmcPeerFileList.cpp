@@ -7,7 +7,6 @@
 #include "../common/FileManType.h"
 #include "../common/FileManFileOp.h"
 #include "../common/FmScheduler.h"
-#include "json/json.h"
 #include <EuhatPostDef.h>
 
 void FmcPeerFileList::req(FmTaskGetSubList *task)

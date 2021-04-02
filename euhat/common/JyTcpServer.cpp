@@ -1,6 +1,7 @@
 #include <EuhatPreDef.h>
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
+#include <common/md5.h>
 #include <common/JyDataEncrypt.h>
 #include "JyTcpSelector.h"
 #include "JyTcpServer.h"
@@ -77,7 +78,19 @@ void JyTcpServer::onReadExchangeAsymSecurity(WhSockHandle sock, unique_ptr<JyDat
 	ds->getBuf(buf);
 	l->encAsym_->n_.setBuf(buf);
 	ds->getBuf(buf);
-	l->encAsym_->e_.setBuf(buf);
+
+	Md5Ctx md5;
+	md5Init(&md5);
+	md5Update(&md5, (unsigned char *)visitCode_.c_str(), visitCode_.length());
+	char digest[16];
+	md5Final(&md5, (unsigned char *)digest);
+	JyBuf xorBuf;
+	xorBuf.reset(digest, sizeof(digest));
+	JyDataWriteStream out;
+	xorData(out, buf.data_.get(), buf.size_, xorBuf);
+	out.buf_.size_ = out.size();
+	xorBuf.data_.release();
+	l->encAsym_->e_.setBuf(out.buf_);
 
 	JyDataWriteStream dsAck;
 	writeHeader(dsAck, JyTcpCmdExchangeAsymSecurity);

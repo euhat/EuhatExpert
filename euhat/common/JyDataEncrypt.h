@@ -67,6 +67,8 @@ public:
 	JyBigNum d_;
 };
 
+int xorData(JyDataWriteStream& dsOut, const char* buf, int len, JyBuf& xorBuf);
+
 class JyDataEncryptSymmetric : public JyDataEncrypt
 {
 public:

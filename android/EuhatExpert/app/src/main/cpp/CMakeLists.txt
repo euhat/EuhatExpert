@@ -29,6 +29,7 @@ file(GLOB EuhatOpenSSL
 
 file(GLOB EuhatCommon
         ${EUHAT_SRC_DIR}/common/*.cpp
+        ${EUHAT_SRC_DIR}/common/*.c
         )
 
 file(GLOB EuhatOs

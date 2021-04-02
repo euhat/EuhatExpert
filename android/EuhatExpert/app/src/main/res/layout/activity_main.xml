@@ -128,7 +128,7 @@
             android:id="@+id/textVersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="version: 1.9.26" />
+            android:text="version: 1.9.31" />
 
     </LinearLayout>
 

@@ -2,7 +2,7 @@
 
 #include <common/JyBuf.h>
 #include "JySockSelector.h"
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 
 #define JY_TCP_INI_CERT_SECTION "cert"
 #define JY_TCP_INI_SERVER_CERT_KEY "server"

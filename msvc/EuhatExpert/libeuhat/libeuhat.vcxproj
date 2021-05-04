@@ -47,7 +47,7 @@
     <ClInclude Include="..\..\..\euhat\common\base64.h" />
     <ClInclude Include="..\..\..\euhat\common\JyBigNum.h" />
     <ClInclude Include="..\..\..\euhat\common\JyBuf.h" />
-    <ClInclude Include="..\..\..\euhat\common\JyDataEncrypt.h" />
+    <ClInclude Include="..\..\..\euhat\common\JyDataCrypto.h" />
     <ClInclude Include="..\..\..\euhat\common\JyDataStream.h" />
     <ClInclude Include="..\..\..\euhat\common\JyList.h" />
     <ClInclude Include="..\..\..\euhat\common\JyMsgLoop.h" />
@@ -165,7 +165,7 @@
     <ClCompile Include="..\..\..\euhat\common\base64.c" />
     <ClCompile Include="..\..\..\euhat\common\JyBigNum.cpp" />
     <ClCompile Include="..\..\..\euhat\common\JyBuf.cpp" />
-    <ClCompile Include="..\..\..\euhat\common\JyDataEncpyt.cpp" />
+    <ClCompile Include="..\..\..\euhat\common\JyDataCrypto.cpp" />
     <ClCompile Include="..\..\..\euhat\common\JyDataStream.cpp" />
     <ClCompile Include="..\..\..\euhat\common\JyMsgLoop.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

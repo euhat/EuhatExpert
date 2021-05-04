@@ -92,15 +92,21 @@
 
             <Button
                 android:id="@+id/btnClipboardPaste"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clipboard Paste" />
+                android:text="Paste" />
 
             <Button
                 android:id="@+id/btnTogglePassword"
-                android:layout_width="100dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:text="Show" />
+
+            <Button
+                android:id="@+id/btnRandomPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Random" />
 
         </LinearLayout>
 
@@ -128,7 +134,7 @@
             android:id="@+id/textVersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="version: 1.9.31" />
+            android:text="version: 1.9.32" />
 
     </LinearLayout>
 

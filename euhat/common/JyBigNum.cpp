@@ -126,9 +126,9 @@ string JyBigNum::data2hex(unsigned char *data, int len)
 	return str.get();
 }
 
-void JyBigNum::hex2data(JyBuf &buf, const char *str)
+JyBuf JyBigNum::hex2data(const char *str)
 {
-	buf.reset(strlen(str) / 2);
+	JyBuf buf(strlen(str) / 2);
 	unsigned char *p = (unsigned char *)str;
 	char pat[] = "0123456789ABCDEF";
 	int idx = 0;
@@ -150,10 +150,12 @@ void JyBigNum::hex2data(JyBuf &buf, const char *str)
 		unsigned char byte = (idx0 << 4) + idx1;
 		*(unsigned char *)(buf.data_.get() + idx++) = byte;
 	}
+	return buf;
 }
 
-void JyBigNum::getBuf(JyBuf &buf)
+JyBuf JyBigNum::getBuf()
 {
+	JyBuf buf;
 #if 1
 	char *p = BN_bn2hex((BIGNUM *)value_);
 	if (p[1] == 0)
@@ -164,16 +166,17 @@ void JyBigNum::getBuf(JyBuf &buf)
 		::MessageBoxA(NULL, "hi,,,,", NULL, 0);
 #endif
 		DBG(("encounter bn to hex return '0'.\n"));
-		hex2data(buf, "00");
+		buf = hex2data("00");
 	}
 	else
-		hex2data(buf, p);
+		buf = hex2data(p);
 	OPENSSL_free(p);
 #else
 	int bits = getBits();
 	buf.reset(bits / 8);
 	BN_bn2bin((BIGNUM *)value_, (unsigned char *)buf.data_.get());
 #endif
+	return buf;
 }
 
 void JyBigNum::setBuf(JyBuf &buf)

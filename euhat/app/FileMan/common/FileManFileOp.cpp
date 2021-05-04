@@ -108,16 +108,15 @@ void fmGenAndWriteCert(DbOpIni &ini, const char *keyName, int bits)
 	JyBigNum d(ctx);
 	d.modInverse(e, phi);
 
-	JyBuf buf;
-	n.getBuf(buf);
+	JyBuf buf =	n.getBuf();
 	string key = string(keyName) + "_n";
 	ini.writeBuf(JY_TCP_INI_CERT_SECTION, key.c_str(), buf);
 
-	e.getBuf(buf);
+	buf = e.getBuf();
 	key = string(keyName) + "_e";
 	ini.writeBuf(JY_TCP_INI_CERT_SECTION, key.c_str(), buf);
 
-	d.getBuf(buf);
+	buf = d.getBuf();
 	key = string(keyName) + "_d";
 	ini.writeBuf(JY_TCP_INI_CERT_SECTION, key.c_str(), buf);
 

@@ -39,14 +39,14 @@ public:
 	void genPrime(int bits);
 	
 	static string data2hex(unsigned char *data, int len);
-	static void hex2data(JyBuf &buf, const char *str);
+	static JyBuf hex2data(const char *str);
 	static void getE(JyBigNum &bn, int bits);
 
 	JyBigNum &modInverse(const JyBigNum &a, const JyBigNum &n);
 	JyBigNum &expMod(const JyBigNum &a, const JyBigNum &power, const JyBigNum &mod);
 	void print(FILE *fp = stdout);
 
-	void getBuf(JyBuf &buf);
+	JyBuf getBuf();
 	void setBuf(JyBuf &buf);
 };
 

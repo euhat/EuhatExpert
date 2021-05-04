@@ -1,6 +1,6 @@
 #include <EuhatPreDef.h>
 #include <common/OpCommon.h>
-#include "JyDataEncrypt.h"
+#include "JyDataCrypto.h"
 #include <common/JyDataStream.h>
 #include <common/WhCommon.h>
 #include <EuhatPostDef.h>
@@ -132,8 +132,7 @@ int JyDataEncryptAsymmetric::encrypt(JyDataWriteStream &dsOut, const char *buf, 
 		c.print(g.fp_);
 #endif
 
-		JyBuf bufTmp;
-		c.getBuf(bufTmp);
+		JyBuf bufTmp = c.getBuf();
 		dsOut.putBuf<short>(bufTmp.data_.get(), bufTmp.size_);
 	}
 	return 1;
@@ -175,8 +174,7 @@ int JyDataDecryptAsymmetric::decrypt(JyDataWriteStream &dsOut, const char *buf, 
 		for (; nullCount--; )
 			dsOut.put<char>(0);
 
-		JyBuf bufTmp;
-		ds.getBuf<short>(bufTmp);
+		JyBuf bufTmp = ds.getBuf<short>();
 		c.setBuf(bufTmp);
 
 		m.expMod(c, d_, n_);
@@ -197,7 +195,7 @@ int JyDataDecryptAsymmetric::decrypt(JyDataWriteStream &dsOut, const char *buf, 
 		m.print(g.fp_);
 #endif
 
-		m.getBuf(bufTmp);
+		bufTmp = m.getBuf();
 		dsOut.putBufWithoutLen(bufTmp.data_.get(), bufTmp.size_);
 	}
 	ds.buf_.data_.release();
@@ -211,7 +209,7 @@ int JyDataDecryptAsymmetric::decrypt(JyDataWriteStream &dsOut, const char *buf, 
 	return 1;
 }
 
-int xorData(JyDataWriteStream &dsOut, const char *buf, int len, JyBuf &xorBuf)
+int xorData(JyDataWriteStream &dsOut, const char *buf, int len, const JyBuf &xorBuf)
 {
 //	dsOut.putBufWithoutLen(buf, len);
 //	return 1;

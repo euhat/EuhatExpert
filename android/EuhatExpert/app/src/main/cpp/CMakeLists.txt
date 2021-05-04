@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 
 #set(CMAKE_CXX_FLAGS "-D__ANDROID_API__=29")
-set(CMAKE_CXX_FLAGS "-D_DEBUG")
+#set(CMAKE_CXX_FLAGS "-D_DEBUG")
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wall -v -Wl,--no-warn-shared-textrel")
 SET(EUHAT_SRC_DIR ../../../../../../euhat)
 

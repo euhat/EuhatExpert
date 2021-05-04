@@ -2,7 +2,7 @@
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
 #include "SimpleFileServer.h"
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 #include "../common/SimplePacket.h"
 #include "../common/SimpleFileOp.h"
 #include <EuhatPostDef.h>

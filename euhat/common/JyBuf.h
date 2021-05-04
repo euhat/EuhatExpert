@@ -5,13 +5,22 @@
 
 class JyBuf
 {
+	void reset(JyBuf&& in);
 public:
 	JyBuf(int size = 0);
+	JyBuf(const string& str);
+	JyBuf(JyBuf&& in);
 	~JyBuf();
 
-	void reset(JyBuf &in);
+	JyBuf& operator=(JyBuf&& in);
+
 	void reset(int len = 0);
 	void reset(char *buf, int len);
+
+	static JyBuf md5(const JyBuf& in);
+	JyBuf xorData(const JyBuf& other);
+
+	int eq(const JyBuf& other);
 
 	unique_ptr<char []> data_;
 	int size_;

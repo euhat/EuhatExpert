@@ -3,7 +3,7 @@
 #include <common/WhCommon.h>
 #include "FileManClient.h"
 #include "FmcDownFile.h"
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 #include "../common/FileManType.h"
 #include "../common/FileManFileOp.h"
 #include "../common/FmScheduler.h"

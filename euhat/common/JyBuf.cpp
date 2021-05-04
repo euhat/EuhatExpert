@@ -1,11 +1,24 @@
 #include <EuhatPreDef.h>
 #include <common/OpCommon.h>
+#include <common/JyDataStream.h>
+#include <common/md5.h>
+#include <common/JyDataCrypto.h>
 #include "JyBuf.h"
 #include <EuhatPostDef.h>
 
-JyBuf::JyBuf(int size)
+JyBuf::JyBuf(int len)
 {
-	reset(size);
+	reset(len);
+}
+
+JyBuf::JyBuf(const string& str)
+{
+	reset(opMemDup(str.c_str(), str.length()), str.length());
+}
+
+JyBuf::JyBuf(JyBuf&& in)
+{
+	reset(std::move(in));
 }
 
 JyBuf::~JyBuf()
@@ -13,7 +26,13 @@ JyBuf::~JyBuf()
 
 }
 
-void JyBuf::reset(JyBuf &in)
+JyBuf& JyBuf::operator=(JyBuf&& in)
+{
+	reset(std::move(in));
+	return *this;
+}
+
+void JyBuf::reset(JyBuf&& in)
 {
 	data_.reset(in.data_.release());
 	size_ = in.size_;
@@ -33,6 +52,30 @@ void JyBuf::reset(char *buf, int len)
 {
 	data_.reset(buf);
 	size_ = len;
+}
+
+JyBuf JyBuf::md5(const JyBuf& in)
+{
+	JyBuf out(16);
+	Md5Ctx md5;
+	md5Init(&md5);
+	md5Update(&md5, (unsigned char *)in.data_.get(), in.size_);
+	md5Final(&md5, (unsigned char *)out.data_.get());
+	return std::move(out);
+}
+
+JyBuf JyBuf::xorData(const JyBuf& other)
+{
+	JyDataWriteStream ds;
+	::xorData(ds, data_.get(), size_, other);
+	JyBuf buf = std::move(ds.buf_);
+	buf.size_ = ds.size();
+	return std::move(buf);
+}
+
+int JyBuf::eq(const JyBuf& other)
+{
+	return size_ == other.size_ && opMemEq(data_.get(), other.data_.get(), size_);
 }
 
 JyBufPool::JyBufPool(int unitSize, int maxReserved)

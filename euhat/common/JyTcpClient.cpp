@@ -1,10 +1,9 @@
 #include <EuhatPreDef.h>
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
-#include <common/md5.h>
 #include "JyTcpSelector.h"
 #include "JyTcpClient.h"
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 #include <dbop/DbOpIni.h>
 #include <time.h>
 #include <EuhatPostDef.h>
@@ -85,21 +84,9 @@ void JyTcpClient::onExchangeAsymSecurity(JyMsg &msg)
 
 	JyDataWriteStream ds;
 	writeHeader(ds, JyTcpCmdExchangeAsymSecurity);
-	JyBuf buf;
-	l->decAsym_->n_.getBuf(buf);
+	JyBuf buf = l->decAsym_->n_.getBuf();
 	ds.putBuf(buf.data_.get(), buf.size_);
-
-	Md5Ctx md5;
-	md5Init(&md5);
-	md5Update(&md5, (unsigned char *)visitCode_.c_str(), visitCode_.length());
-	char digest[16];
-	md5Final(&md5, (unsigned char *)digest);
-	JyBuf xorBuf;
-	xorBuf.reset(digest, sizeof(digest));
-	JyDataWriteStream out;
-	xorData(out, l->e_.data_.get(), l->e_.size_, xorBuf);
-	xorBuf.data_.release();
-	ds.putBuf(out.buf_.data_.get(), out.size());
+	ds.putBuf(l->e_.data_.get(), l->e_.size_);
 
 	send(sock_, ds);
 
@@ -115,8 +102,7 @@ void JyTcpClient::onReadExchangeAsymSecurity(unique_ptr<JyDataReadBlock> &ds)
 
 	JyTcpListener *l = selector_->getListener(sock_);
 
-	JyBuf buf;
-	ds->getBuf(buf);
+	JyBuf buf = ds->getBuf();
 	if (buf.size_ < 10)
 	{
 		DBG(("receive certificate length is too short, close the socket.\n"));
@@ -124,7 +110,7 @@ void JyTcpClient::onReadExchangeAsymSecurity(unique_ptr<JyDataReadBlock> &ds)
 		return;
 	}
 	l->encAsym_->n_.setBuf(buf);
-	ds->getBuf(buf);
+	buf = ds->getBuf();
 	l->encAsym_->e_.setBuf(buf);
 
 	l->enc_ = l->encAsym_.get();
@@ -142,6 +128,7 @@ void JyTcpClient::onExchangeSymSecurity(JyMsg &msg)
 
 	JyDataWriteStream ds;
 	writeHeader(ds, JyTcpCmdExchangeSymSecurity);
+	JyBuf visitCodeMd5 = move(JyBuf::md5(JyBuf(visitCode_)));
 #if 0
 	JyBigNumCtx ctx;
 	JyBigNum bn(ctx);
@@ -159,15 +146,18 @@ void JyTcpClient::onExchangeSymSecurity(JyMsg &msg)
 	JyBuf buf(2048);
 	whRandUniformBuf(buf);
 	ds.putBuf(buf.data_.get(), buf.size_);
-	l->decSym_->xor_.reset(buf);
+	buf = buf.xorData(visitCodeMd5);
+	l->decSym_->xor_ = std::move(buf);
 
 	buf.reset(2048);
 	whRandUniformBuf(buf);
 	ds.putBuf(buf.data_.get(), buf.size_);
-	l->encSym_->xor_.reset(buf);
+	buf = buf.xorData(visitCodeMd5);
+	l->encSym_->xor_ = std::move(buf);
 #endif
 
-	ds.putStr(visitCode_.c_str());
+	visitCodeMd5 = move(JyBuf::md5(visitCodeMd5));
+	ds.putBuf(visitCodeMd5.data_.get(), visitCodeMd5.size_);
 
 	send(sock_, ds);
 }

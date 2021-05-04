@@ -3,7 +3,7 @@
 #include <common/WhCommon.h>
 #include <time.h>
 #include "FileManClient.h"
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 #include "../common/FileManType.h"
 #include "../common/FileManFileOp.h"
 #include "../common/FmTask.h"

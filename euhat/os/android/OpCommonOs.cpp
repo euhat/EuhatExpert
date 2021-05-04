@@ -43,7 +43,7 @@ void ivrLog(const char *format, ...)
 	string dispStr = timeBuf;
 	dispStr += buf;
 
-	LOGE(dispStr.c_str());
+	LOGE("%s", dispStr.c_str());
 
 	return;
 

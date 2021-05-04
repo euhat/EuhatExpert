@@ -1,8 +1,7 @@
 #include <EuhatPreDef.h>
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
-#include <common/md5.h>
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 #include "JyTcpSelector.h"
 #include "JyTcpServer.h"
 #include <EuhatPostDef.h>
@@ -74,27 +73,14 @@ void JyTcpServer::onReadExchangeAsymSecurity(WhSockHandle sock, unique_ptr<JyDat
 
 	JyTcpListener *l = selector_->getListener(sock);
 
-	JyBuf buf;
-	ds->getBuf(buf);
+	JyBuf buf = ds->getBuf();
 	l->encAsym_->n_.setBuf(buf);
-	ds->getBuf(buf);
-
-	Md5Ctx md5;
-	md5Init(&md5);
-	md5Update(&md5, (unsigned char *)visitCode_.c_str(), visitCode_.length());
-	char digest[16];
-	md5Final(&md5, (unsigned char *)digest);
-	JyBuf xorBuf;
-	xorBuf.reset(digest, sizeof(digest));
-	JyDataWriteStream out;
-	xorData(out, buf.data_.get(), buf.size_, xorBuf);
-	out.buf_.size_ = out.size();
-	xorBuf.data_.release();
-	l->encAsym_->e_.setBuf(out.buf_);
+	buf = ds->getBuf();
+	l->encAsym_->e_.setBuf(buf);
 
 	JyDataWriteStream dsAck;
 	writeHeader(dsAck, JyTcpCmdExchangeAsymSecurity);
-	l->decAsym_->n_.getBuf(buf);
+	buf = l->decAsym_->n_.getBuf();
 	dsAck.putBuf(buf.data_.get(), buf.size_);
 	dsAck.putBuf(l->e_.data_.get(), l->e_.size_);
 
@@ -116,22 +102,26 @@ void JyTcpServer::onReadExchangeSymSecurity(WhSockHandle sock, unique_ptr<JyData
 
 	JyTcpListener *l = selector_->getListener(sock);
 
-	ds->getBuf(l->encSym_->xor_);
-	ds->getBuf(l->decSym_->xor_);
+	JyBuf visitCodeMd5 = move(JyBuf::md5(JyBuf(visitCode_)));
+	l->encSym_->xor_ = ds->getBuf();
+	l->encSym_->xor_ = l->encSym_->xor_.xorData(visitCodeMd5);
+	l->decSym_->xor_ = ds->getBuf();
+	l->decSym_->xor_ = l->decSym_->xor_.xorData(visitCodeMd5);
 
-	char *visitCode = ds->getStr();
-	if (visitCode_ != visitCode)
+	visitCodeMd5 = move(JyBuf::md5(visitCodeMd5));
+	JyBuf md5 = ds->getBuf();
+	if (!md5.eq(visitCodeMd5))
 	{
 		DBG(("visit code mismatch, will close client.\n"));
 
 		JyBuf buf(2048);
 		whRandUniformBuf(buf);
-		l->decSym_->xor_.reset(buf);
+		l->decSym_->xor_ = std::move(buf);
 	}
 
 	JyDataWriteStream dsAck;
 	writeHeader(dsAck, JyTcpCmdExchangeSymSecurity);
-	dsAck.put<int>(visitCode_ == visitCode);
+	dsAck.put<int>(md5.eq(visitCodeMd5));
 	onWriteHostInfo(dsAck);
 
 	send(sock, dsAck);

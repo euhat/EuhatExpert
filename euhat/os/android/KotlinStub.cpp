@@ -83,6 +83,7 @@ string KotlinStub::callFromCpp(const char *str, int i)
     env->ReleaseStringUTFChars(jResult, result);
 
     vm->DetachCurrentThread();
+    return string(result);
 }
 
 void KotlinStub::updateClipboard(const char *str)

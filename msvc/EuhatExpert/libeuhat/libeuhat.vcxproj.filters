@@ -166,7 +166,7 @@
     <ClInclude Include="..\..\..\euhat\os\win32\WhCommonOs.h">
       <Filter>euhat\os\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\euhat\common\JyDataEncrypt.h">
+    <ClInclude Include="..\..\..\euhat\common\JyDataCrypto.h">
       <Filter>euhat\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\euhat\common\JyDataStream.h">
@@ -513,7 +513,7 @@
     <ClCompile Include="..\..\..\euhat\common\JyTcpSelector.cpp">
       <Filter>euhat\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\euhat\common\JyDataEncpyt.cpp">
+    <ClCompile Include="..\..\..\euhat\common\JyDataCrypto.cpp">
       <Filter>euhat\common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\euhat\common\JyDataStream.cpp">

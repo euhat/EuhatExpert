@@ -2,7 +2,7 @@
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
 #include "FileManServer.h"
-#include <common/JyDataEncrypt.h>
+#include <common/JyDataCrypto.h>
 #include "../common/FileManType.h"
 #include "../common/FileManFileOp.h"
 #include <EuhatPostDef.h>

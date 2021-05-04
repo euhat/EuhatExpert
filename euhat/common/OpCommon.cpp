@@ -372,6 +372,18 @@ int opStrLen(const wchar_t *str)
 	return i;
 }
 
+int opMemEq(const char* l, const char* r, int len)
+{
+	return memcmp(l, r, len) == 0;
+}
+
+char* opMemDup(const char* p, int len)
+{
+	char* o = (char*)malloc(len);
+	memcpy(o, p, len);
+	return o;
+}
+
 wchar_t *opStrDup(const wchar_t *str)
 {
 	int size = (opStrLen(str) + 1) * sizeof(wchar_t);

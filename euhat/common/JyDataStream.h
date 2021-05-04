@@ -101,12 +101,13 @@ public:
 	}
 
 	template<class T = int>
-	void getBuf(JyBuf &buf)
+	JyBuf getBuf()
 	{
 		int len;
 		char *p = getBuf<T>(len);
-		buf.reset(len);
+		JyBuf buf(len);
 		memcpy(buf.data_.get(), p, len);
+		return std::move(buf);
 	}
 
 	int getIdx() { return idx_; }

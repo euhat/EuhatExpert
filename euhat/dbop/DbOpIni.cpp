@@ -74,7 +74,7 @@ void DbOpIni::readBuf(const char *section, const char *keyName, JyBuf &buf)
 	buf.size_--;
 #else
 	string hexStr = readStr(section, keyName);
-	JyBigNum::hex2data(buf, hexStr.c_str());
+	buf = JyBigNum::hex2data(hexStr.c_str());
 #endif
 }
 

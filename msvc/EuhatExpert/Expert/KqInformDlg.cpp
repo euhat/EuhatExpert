@@ -176,7 +176,13 @@ BOOL KqInformDlg::OnInitDialog()
 
 	refreshUiLocalization();
 
-	CenterWindow();
+	//CenterWindow();
+	int cx = GetSystemMetrics(SM_CXMAXIMIZED);
+	int cy = GetSystemMetrics(SM_CYMAXIMIZED);
+	CRect rc;
+	GetWindowRect(&rc);
+	rc.MoveToXY(cx - rc.Width(), cy - rc.Height());
+	MoveWindow(rc);
 
 	return TRUE;
 }

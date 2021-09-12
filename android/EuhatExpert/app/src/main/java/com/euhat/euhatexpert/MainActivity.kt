@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 btnEnd.isEnabled = true
                 editPort.isEnabled = false
                 editVisitCode.isEnabled = false
+                btnRandomPassword.isEnabled = false
             }
         })
 
@@ -94,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 btnStart.isEnabled = true
                 editPort.isEnabled = true
                 editVisitCode.isEnabled = true
+                btnRandomPassword.isEnabled = true
             }
         })
 

@@ -160,6 +160,10 @@ LRESULT EuhatListCtrl::handleMsg(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_COMMAND: {
 		return 0;
 	}
+	case WM_KILLFOCUS: {
+		eventRunner_->toolTip_.reset();
+		return 0;
+	}
 	}
 	return EuhatBackWnd::handleMsg(uMsg, wParam, lParam);
 }

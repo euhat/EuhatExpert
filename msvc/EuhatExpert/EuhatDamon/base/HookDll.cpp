@@ -68,7 +68,7 @@ LRESULT WINAPI ll_record_mouse_proc(int ncode, WPARAM wparam, LPARAM lparam)
 	return CallNextHookEx((HHOOK)gHookDll->hookMouseProc_, ncode, wparam, lparam);
 }
 
-LRESULT ll_record_keyboard_proc(int ncode, WPARAM wparam, LPARAM lparam)
+LRESULT WINAPI ll_record_keyboard_proc(int ncode, WPARAM wparam, LPARAM lparam)
 {
 	PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lparam;
 	WPARAM workerWparam;

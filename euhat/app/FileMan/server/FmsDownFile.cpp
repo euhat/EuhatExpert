@@ -10,7 +10,7 @@
 void FmsDownFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 {
 	int id = ds->get<int>();
-	string path = ds->getStr();
+	string path = whCorrectFilePath(ds->getStr());
 	int64_t filePos = ds->get<int64_t>();
 	int reqLen = ds->get<int>();
 	if (reqLen > FILE_MAN_RECV_FILE_SEGMENT_MAX_LEN)

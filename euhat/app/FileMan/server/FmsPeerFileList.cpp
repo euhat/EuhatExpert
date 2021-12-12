@@ -10,7 +10,7 @@
 void FmsPeerFileList::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 {
 	int id = ds->get<int>();
-	string path = ds->getStr();
+	string path = whCorrectFilePath(ds->getStr());
 
 	JyDataWriteStream dsAck;
 	parent_->writeHeader(dsAck, FmCmdGetPeerFileList);

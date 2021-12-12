@@ -8,6 +8,7 @@
 
 #define WH_PACK_INT64(_dwHigh,_dwLow) (((int64_t)(_dwHigh)) << 32 | ((int64_t)(_dwLow)))
 
+string whCorrectFilePath(const char* path);
 FILE *whFopen(const char *path, const char *mode);
 void whFClose(FILE *fp);
 int64_t whGetFileSize(const char *path);

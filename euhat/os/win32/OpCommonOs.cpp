@@ -1,6 +1,7 @@
 #include <EuhatPreDef.h>
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
+#include <os/EuhatPath.h>
 #include <windows.h>
 #include <time.h>
 #include <direct.h>
@@ -213,6 +214,14 @@ string getCurrentDir()
 	GetCurrentDirectoryA(_MAX_PATH - 1, curPath);
 
 	return curPath;
+}
+
+string whCorrectFilePath(const char* path)
+{
+	EuhatPath pa;
+	pa.inStr(path);
+	pa.isUnix_ = 0;
+	return pa.toStr();
 }
 
 int opMkDir(const char *path)

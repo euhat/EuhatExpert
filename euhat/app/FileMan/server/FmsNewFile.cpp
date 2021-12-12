@@ -11,7 +11,7 @@
 void FmsNewFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 {
 	int id = ds->get<int>();
-	string path = ds->getStr();
+	string path = whCorrectFilePath(ds->getStr());
 	int isFolder = ds->get<int>();
 
 	int retResult = 0;

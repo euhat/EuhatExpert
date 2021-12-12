@@ -10,7 +10,7 @@
 void FmsUpFile::echo(WhSockHandle sock, unique_ptr<JyDataReadBlock> &ds)
 {
 	int id = ds->get<int>();
-	string path = ds->getStr();
+	string path = whCorrectFilePath(ds->getStr());
 	time_t lastWriteTime = ds->get<int64_t>();
 	int64_t totalFileSize = ds->get<int64_t>();
 	int64_t filePos = ds->get<int64_t>();

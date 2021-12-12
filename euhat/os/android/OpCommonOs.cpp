@@ -1,6 +1,7 @@
 #include <common/OpCommon.h>
 #include <common/WhCommon.h>
 #include <common/JyDataStream.h>
+#include <os/EuhatPath.h>
 #include <iconv.h>
 #include <sys/stat.h>
 #include <sys/statfs.h>
@@ -137,6 +138,14 @@ string getCurrentDir()
 #else
 	return EUHAT_PATH_BASE;
 #endif
+}
+
+string whCorrectFilePath(const char* path)
+{
+	EuhatPath pa;
+	pa.inStr(path);
+	pa.isUnix_ = 1;
+	return pa.toStr();
 }
 
 int opMkDir(const char *path)

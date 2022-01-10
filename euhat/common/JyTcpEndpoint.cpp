@@ -105,7 +105,7 @@ int JyTcpEndpoint::onSockRead(WhSockHandle &sock, JyTcpPacketTypeType &packetTyp
 	JyDataWriteBlock dsOut(*buf->guard_.pool_);
 	if (!l->dec_->decrypt(dsOut, buf->guard_.get() + sizeof(int) + sizeof(JyTcpPacketTypeType), buf->recvLen_ - sizeof(int) - sizeof(JyTcpPacketTypeType)))
 	{
-		postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, sock);
+		postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, (vint)sock);
 		return 0;
 	}
 

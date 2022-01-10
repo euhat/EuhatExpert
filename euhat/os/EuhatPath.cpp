@@ -5,6 +5,7 @@
 EuhatPath::EuhatPath()
 {
 	isUnix_ = 0;
+	isAbsPath_ = 0;
 }
 
 void EuhatPath::goSub(const char *fileName)
@@ -27,6 +28,14 @@ void EuhatPath::inStr(const char *path)
 	unique_ptr<char[]> buf(opStrDup(path));
 	strReplaceChar(buf.get(), '\\', '/');
 
+	isAbsPath_ = 0;
+	int len = strlen(buf.get());
+	if (len > 1)
+	{
+		if (buf.get()[0] == '/')
+			isAbsPath_ = 1;
+	}
+
 	vector<string> out;
 	splitTokenString(buf.get(), '/', out);
 
@@ -35,14 +44,14 @@ void EuhatPath::inStr(const char *path)
 			path_.push_back(move(*it));
 }
 
-string EuhatPath::toStr(int isAbsoluteDir)
+string EuhatPath::toStr()
 {
 	char split = '\\';
 	ostringstream ss;
 	if (isUnix_)
 	{
 		split = '/';
-		if (isAbsoluteDir)
+		if (isAbsPath_)
 		{
 			ss << split;
 		}

@@ -372,12 +372,12 @@ int opStrLen(const wchar_t *str)
 	return i;
 }
 
-int opMemEq(const char* l, const char* r, int len)
+int opMemEq(const char* l, const char* r, size_t len)
 {
 	return memcmp(l, r, len) == 0;
 }
 
-char* opMemDup(const char* p, int len)
+char* opMemDup(const char* p, size_t len)
 {
 	char* o = (char*)malloc(len);
 	memcpy(o, p, len);

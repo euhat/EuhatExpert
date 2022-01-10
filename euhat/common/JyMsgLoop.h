@@ -26,7 +26,7 @@ struct JyMsg
 {
 	int cmd_;
 	void *p_;
-	int int_;
+	vint int_;
 };
 
 class JyMsgTimer;
@@ -46,7 +46,7 @@ public:
 	int start();
 	int stop();
 
-	void postMsg(int cmd, void *p = NULL, int int_ = 0);
+	void postMsg(int cmd, void *p = NULL, vint int_ = 0);
 
 	int createTimer(int id, long msecs);
 	int killTimer(int id);

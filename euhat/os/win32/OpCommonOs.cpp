@@ -518,8 +518,8 @@ HICON whFileIcon(const char *extention, int exFlags)
 {
 	HICON icon = NULL;
 
-	SHFILEINFOA info;
-	if (SHGetFileInfoA(extention,
+	SHFILEINFO info;
+	if (SHGetFileInfo(utf8ToWstr(extention).c_str(),
 		FILE_ATTRIBUTE_NORMAL,
 		&info,
 		sizeof(info),
@@ -535,14 +535,14 @@ std::string whFileType(const char *extention)
 {
 	string type;
 
-	SHFILEINFOA info;
-	if (SHGetFileInfoA(extention,
+	SHFILEINFO info;
+	if (SHGetFileInfo(utf8ToWstr(extention).c_str(),
 		FILE_ATTRIBUTE_NORMAL,
 		&info,
 		sizeof(info),
 		SHGFI_TYPENAME | SHGFI_USEFILEATTRIBUTES))
 	{
-		type = info.szTypeName;
+		type = wstrToUtf8(info.szTypeName);
 	}
 
 	return type;
@@ -552,8 +552,8 @@ HICON whFolderIcon(int exFlags)
 {
 	HICON icon = NULL;
 
-	SHFILEINFOA info;
-	if (SHGetFileInfoA("folder",
+	SHFILEINFO info;
+	if (SHGetFileInfo(L"folder",
 		FILE_ATTRIBUTE_DIRECTORY,
 		&info,
 		sizeof(info),
@@ -569,14 +569,14 @@ std::string whFolderType()
 {
 	std::string type;
 
-	SHFILEINFOA info;
-	if (SHGetFileInfoA("folder",
+	SHFILEINFO info;
+	if (SHGetFileInfo(L"folder",
 		FILE_ATTRIBUTE_DIRECTORY,
 		&info,
 		sizeof(info),
 		SHGFI_TYPENAME | SHGFI_USEFILEATTRIBUTES))
 	{
-		type = info.szTypeName;
+		type = wstrToUtf8(info.szTypeName);
 	}
 
 	return type;

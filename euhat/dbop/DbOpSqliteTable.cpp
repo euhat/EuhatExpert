@@ -54,7 +54,7 @@ public:
 int DbOpSqliteTable::exePrepare(const char *sql, vector<DbOpCell> &cells)
 {
 	DbOpSqliteStmt stmt;
-	int res = sqlite3_prepare_v2(db_->db_, sql, strlen(sql), &stmt.stmt_, 0);
+	int res = sqlite3_prepare_v2(db_->db_, sql, (int)strlen(sql), &stmt.stmt_, 0);
 	if (res != SQLITE_OK)
 	{
 		DBG(("sqlite prepare error [%s].\n", sqlite3_errmsg(db_->db_)));
@@ -69,7 +69,7 @@ int DbOpSqliteTable::exePrepare(const char *sql, vector<DbOpCell> &cells)
 			continue;
 
 		if (it->type_ == DbOpColumnTypeText)
-			sqlite3_bind_text(stmt.stmt_, stmtIdx, cells[i].buf_.get(), strlen(cells[i].buf_.get()), NULL);
+			sqlite3_bind_text(stmt.stmt_, stmtIdx, cells[i].buf_.get(), (int)strlen(cells[i].buf_.get()), NULL);
 		else if (it->type_ == DbOpColumnTypeBlob)
 			sqlite3_bind_blob(stmt.stmt_, stmtIdx, cells[i].buf_.get(), (int)cells[i].i_, NULL);
 		else if (it->type_ == DbOpColumnTypeInt)
@@ -140,7 +140,7 @@ int DbOpSqliteTable::select(const char *where, list<vector<DbOpCell>> &rows)
 	string sql = ss.str();
 
 	DbOpSqliteStmt stmt;
-	int res = sqlite3_prepare_v2(db_->db_, sql.c_str(), sql.length(), &stmt.stmt_, 0);
+	int res = sqlite3_prepare_v2(db_->db_, sql.c_str(), (int)sql.length(), &stmt.stmt_, 0);
 	if (res != SQLITE_OK)
 	{
 		DBG(("sqlite prepare error [%s].\n", sqlite3_errmsg(db_->db_)));

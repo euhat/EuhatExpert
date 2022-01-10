@@ -104,14 +104,14 @@ JyBigNum &JyBigNum::rand(int bits)
 void whRandUniformBuf(JyBuf &buf)
 {
 	char *p = buf.data_.get();
-	int size = buf.size_;
+	size_t size = buf.size_;
 	for (int i = 0; i < size; i++, p++)
 	{
 		*p = (char)whRandUniformInt(0, 256);
 	}
 }
 
-string JyBigNum::data2hex(unsigned char *data, int len)
+string JyBigNum::data2hex(unsigned char *data, size_t len)
 {
 	unique_ptr<char[]> str(new char[len * 2 + 1]);
 	char *o = str.get();

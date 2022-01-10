@@ -38,7 +38,7 @@ public:
 
 	void genPrime(int bits);
 	
-	static string data2hex(unsigned char *data, int len);
+	static string data2hex(unsigned char *data, size_t len);
 	static JyBuf hex2data(const char *str);
 	static void getE(JyBigNum &bn, int bits);
 

@@ -64,8 +64,8 @@ int strIsEndWith(const char *str, const char *endStr);
 int strIsStartWith(const char *str, const char *startStr);
 void strReplaceChar(char *str, char pattern, char replace);
 
-int opMemEq(const char* l, const char* r, int len);
-char* opMemDup(const char* p, int len);
+int opMemEq(const char* l, const char* r, size_t len);
+char* opMemDup(const char* p, size_t len);
 char* opStrDup(const char* str);
 wchar_t* opStrDup(const wchar_t* str);
 int opStrCmp(const wchar_t *l, const wchar_t *r);

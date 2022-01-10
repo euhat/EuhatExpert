@@ -15,11 +15,11 @@ JyDataWriteStream::~JyDataWriteStream()
 
 }
 
-void JyDataWriteStream::ensureRoom(int addSize)
+void JyDataWriteStream::ensureRoom(size_t addSize)
 {
 	if (idx_ + addSize > buf_.size_)
 	{
-		int dataSize = buf_.size_;
+		size_t dataSize = buf_.size_;
 		if (dataSize == 0)
 			dataSize = JY_ENCRYPT_DATA_ROOM_UNIT_SIZE;
 		while (idx_ + addSize > dataSize)
@@ -32,12 +32,12 @@ void JyDataWriteStream::ensureRoom(int addSize)
 	}
 }
 
-void JyDataWriteStream::putBufWithoutLen(const char *buf, int len)
+void JyDataWriteStream::putBufWithoutLen(const char *buf, size_t len)
 {
 	ensureRoom(len);
 	char *ptr = buf_.data_.get() + idx_;
 	memcpy(ptr, buf, len);
-	idx_ += len;
+	idx_ += (int)len;
 }
 
 int JyDataWriteStream::size()
@@ -45,11 +45,11 @@ int JyDataWriteStream::size()
 	return idx_;
 }
 
-char *JyDataWriteStream::allocBufWithoutLen(int bufLen)
+char *JyDataWriteStream::allocBufWithoutLen(size_t bufLen)
 {
 	ensureRoom(bufLen);
 	char *ptr = buf_.data_.get() + idx_;
-	idx_ += bufLen;
+	idx_ += (int)bufLen;
 	return ptr;
 }
 

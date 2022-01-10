@@ -105,7 +105,7 @@ void EuhatCertificateDlg::updateResultMsg()
 	euhatBase_->ini_->readBuf(JY_TCP_INI_CERT_SECTION, key.c_str(), buf);
 	string msg;
 	if (val.length() > 0)
-		msg = "Last generated date: " + val + ", length: " + intToString(buf.size_ * 8) + " bits.";
+		msg = "Last generated date: " + val + ", length: " + intToString((int)(buf.size_ * 8)) + " bits.";
 	else
 		msg = "Certificate is empty, please generate first.";
 	cstr = CA2T(msg.c_str());

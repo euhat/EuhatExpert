@@ -6,7 +6,7 @@
 #include "JyBuf.h"
 #include <EuhatPostDef.h>
 
-JyBuf::JyBuf(int len)
+JyBuf::JyBuf(size_t len)
 {
 	reset(len);
 }
@@ -39,7 +39,7 @@ void JyBuf::reset(JyBuf&& in)
 	in.size_ = 0;
 }
 
-void JyBuf::reset(int len)
+void JyBuf::reset(size_t len)
 {
 	if (len > 0)
 		data_.reset(new char[len]);
@@ -48,7 +48,7 @@ void JyBuf::reset(int len)
 	size_ = len;
 }
 
-void JyBuf::reset(char *buf, int len)
+void JyBuf::reset(char *buf, size_t len)
 {
 	data_.reset(buf);
 	size_ = len;

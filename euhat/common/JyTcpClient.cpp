@@ -106,7 +106,7 @@ void JyTcpClient::onReadExchangeAsymSecurity(unique_ptr<JyDataReadBlock> &ds)
 	if (buf.size_ < 10)
 	{
 		DBG(("receive certificate length is too short, close the socket.\n"));
-		postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, sock_);
+		postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, (vint)sock_);
 		return;
 	}
 	l->encAsym_->n_.setBuf(buf);

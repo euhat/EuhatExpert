@@ -113,7 +113,7 @@ int getLocalMacs(vector<string> &out, int type)
 	}
 	free(pAdapterInfo);
 
-	return out.size();
+	return (int)out.size();
 }
 
 #define INI_SECTION_LOCAL "local"

@@ -7,15 +7,15 @@ class JyBuf
 {
 	void reset(JyBuf&& in);
 public:
-	JyBuf(int size = 0);
+	JyBuf(size_t size = 0);
 	JyBuf(const string& str);
 	JyBuf(JyBuf&& in);
 	~JyBuf();
 
 	JyBuf& operator=(JyBuf&& in);
 
-	void reset(int len = 0);
-	void reset(char *buf, int len);
+	void reset(size_t len = 0);
+	void reset(char *buf, size_t len);
 
 	static JyBuf md5(const JyBuf& in);
 	JyBuf xorData(const JyBuf& other);
@@ -23,7 +23,7 @@ public:
 	int eq(const JyBuf& other);
 
 	unique_ptr<char []> data_;
-	int size_;
+	size_t size_;
 };
 
 class JyBufGuard;

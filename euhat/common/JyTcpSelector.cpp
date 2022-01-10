@@ -186,7 +186,7 @@ int JyTcpSelector::addConnect(const char *ip, int port, JyTcpEndpoint *listener)
 	{
 		DBG(("tcp connect peer failed. [%s:%d][%d]\n", ip, port, whGetLastError()));
 		whCloseSocket(sock);
-		listener->postMsg(JY_MSG_TYPE_SOCK_CONNECT_END, NULL, WH_INVALID_SOCKET);
+		listener->postMsg(JY_MSG_TYPE_SOCK_CONNECT_END, NULL, (vint)WH_INVALID_SOCKET);
 		return 0;
 	}
 
@@ -199,7 +199,7 @@ int JyTcpSelector::addConnect(const char *ip, int port, JyTcpEndpoint *listener)
 	setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (const char*)&nSendBuf, sizeof(int));
 */
 	add(sock, JyTcpSelectRecv, listener);
-	listener->postMsg(JY_MSG_TYPE_SOCK_CONNECT_END, NULL, sock);
+	listener->postMsg(JY_MSG_TYPE_SOCK_CONNECT_END, NULL, (vint)sock);
 
 	return 1;
 }
@@ -262,7 +262,7 @@ int JyTcpSelector::onRead(WhSockHandle sock)
 	{
 		struct sockaddr_in clientAddress;
 		WhSockLen clientLen = sizeof(clientAddress);
-		int clientSock;
+		WhSockHandle clientSock;
 		clientSock = ::accept(sock, (struct sockaddr *)&clientAddress, &clientLen);
 		if (WH_INVALID_SOCKET == clientSock)
 		{
@@ -273,7 +273,7 @@ int JyTcpSelector::onRead(WhSockHandle sock)
 		int peerPort = ntohs(clientAddress.sin_port);
 		DBG(("tcp select accept [%s][%d].\n", peerIp.c_str(), peerPort));
 
-		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_ACCEPT, NULL, clientSock);
+		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_ACCEPT, NULL, (vint)clientSock);
 		return 1;
 	}
 
@@ -285,7 +285,7 @@ int JyTcpSelector::onRead(WhSockHandle sock)
 	{
 		DBG(("tcp recv failed, errno is %d:[%s].\n", errno, strerror(errno)));
 		it->second->recvBuf_.reset();
-		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, sock);
+		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, (vint)sock);
 		return 0;
 	}
 	totalRecvRefresh(recvLen);
@@ -297,12 +297,12 @@ int JyTcpSelector::onRead(WhSockHandle sock)
 	{
 		// this thread must be stopped before msgloop is stopped.
 		// or else, here will happen memory leak.
-		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_READ, outBuf.release(), sock);
+		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_READ, outBuf.release(), (vint)sock);
 	}
 	else if (result == -1)
 	{
 		it->second->recvBuf_.reset();
-		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, sock);
+		it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, (vint)sock);
 		return 0;
 	}
 	return 1;
@@ -329,7 +329,7 @@ int JyTcpSelector::onWrite(WhSockHandle sock)
 	{
 		waitForWritable(sock);
 
-		int len = ::send(sock, buf->data_.get() + sentLen, buf->size_ - sentLen, 0);
+		int len = ::send(sock, buf->data_.get() + sentLen, (int)(buf->size_ - sentLen), 0);
 		if (len < 0)
 		{
 			DBG(("tcp recv failed, errno is %d:[%s].\n", errno, strerror(errno)));
@@ -342,7 +342,7 @@ int JyTcpSelector::onWrite(WhSockHandle sock)
 				DBG(("can't find writing sock.\n"));
 				return 0;
 			}
-			it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, sock);
+			it->second->listener_->postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, (vint)sock);
 			return 0;
 		}
 		else

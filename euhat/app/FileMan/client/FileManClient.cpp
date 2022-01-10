@@ -73,7 +73,7 @@ void FileManClient::onReadExchangeSymSecurity(unique_ptr<JyDataReadBlock> &ds)
 		else
 		{
 			task->result_ = FmResultVisitCodeMismatch;
-			postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, sock_);
+			postMsg(JY_MSG_TYPE_SOCK_DISCONNECT, NULL, (vint)sock_);
 		}
 		scheduler_->notifyUi();
 	}

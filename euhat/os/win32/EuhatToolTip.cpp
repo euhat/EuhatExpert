@@ -42,7 +42,7 @@ void EuhatToolTip::onDraw(HDC hdc)
 	GetWindowRect(hwnd_, &rc.rc_);
 
 	SIZE size;
-	GetTextExtentPoint32(hdc, txt_.c_str(), txt_.size(), &size);
+	GetTextExtentPoint32(hdc, txt_.c_str(), (int)txt_.size(), &size);
 
 	if (rc.width() != size.cx + 2 * marginX)
 	{
@@ -58,7 +58,7 @@ void EuhatToolTip::onDraw(HDC hdc)
 
 	brush_->FillRect(hdc, rc.rc_);
 
-	TextOut(hdc, marginX, (rc.height() - size.cy) / 2, txt_.c_str(), txt_.length());
+	TextOut(hdc, marginX, (rc.height() - size.cy) / 2, txt_.c_str(), (int)txt_.length());
 
 	pen_->drawRect(hdc, rc.rc_);
 }

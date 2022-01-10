@@ -209,20 +209,17 @@ int JyDataDecryptAsymmetric::decrypt(JyDataWriteStream &dsOut, const char *buf, 
 	return 1;
 }
 
-int xorData(JyDataWriteStream &dsOut, const char *buf, int len, const JyBuf &xorBuf)
+int xorData(JyDataWriteStream &dsOut, const char *buf, size_t len, const JyBuf &xorBuf)
 {
-//	dsOut.putBufWithoutLen(buf, len);
-//	return 1;
-
-	int stepBytes = xorBuf.size_;
+	size_t stepBytes = xorBuf.size_;
 	const char *p = buf;
-	int leftBytes = len;
+	size_t leftBytes = len;
 
 	dsOut.ensureRoom(len);
 	char *pTo = dsOut.allocBufWithoutLen(len);
 	while (1)
 	{
-		int toCopy = 0;
+		size_t toCopy = 0;
 		if (leftBytes >= stepBytes)
 		{
 			toCopy = stepBytes;
@@ -245,7 +242,7 @@ int xorData(JyDataWriteStream &dsOut, const char *buf, int len, const JyBuf &xor
 #else
 		typedef int64_t unitType;
 		char *pFrom = xorBuf.data_.get();
-		int i64s = toCopy / (sizeof(unitType) << 2);
+		size_t i64s = toCopy / (sizeof(unitType) << 2);
 		for (; i64s--; )
 		{
 			*(unitType *)pTo = (*(unitType *)p) ^ (*(unitType *)pFrom);

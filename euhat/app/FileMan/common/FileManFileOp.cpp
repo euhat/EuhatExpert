@@ -245,7 +245,7 @@ void dispatchSubList(FmScheduler *scheduler, JyMsgLoop *loop, FmTaskGetSubList &
 		shared_ptr<FmTaskDel> task(new FmTaskDel(loop == scheduler->remote_ ? FmTask::TypeDelPeer : FmTask::TypeDel));
 		EuhatPath euPath;
 		euPath.inStr(curDir);
-		task->priority_ = 1000 - euPath.path_.size();
+		task->priority_ = (int)(1000 - euPath.path_.size());
 		task->path_.reset(opStrDup(curDir));
 		task->isFolder_ = 1;
 		scheduler->add(task);

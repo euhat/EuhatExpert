@@ -12,7 +12,7 @@ typedef struct
 } Md5Ctx;
                                       
 void md5Init(Md5Ctx* context);
-void md5Update(Md5Ctx* context, unsigned char* input, unsigned int inputlen);
+void md5Update(Md5Ctx* context, unsigned char* input, size_t inputlen);
 void md5Final(Md5Ctx* context, unsigned char digest[16]);
 void md5Transform(unsigned int state[4], unsigned char block[64]);
 void md5Encode(unsigned char* output, unsigned int* input, unsigned int len);

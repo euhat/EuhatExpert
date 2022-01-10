@@ -1,6 +1,7 @@
 #pragma once
 
 #include <common/OpCommon.h>
+#include <windows.h>
 
 namespace euhatwin
 {

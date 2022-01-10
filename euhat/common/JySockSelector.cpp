@@ -38,7 +38,7 @@ int JySockSelector::workProc()
 {
 	while (workThreadIsRunning_)
 	{
-		int maxFd;
+		WhSockHandle maxFd;
 		fd_set readFdsCopy;
 
 		{

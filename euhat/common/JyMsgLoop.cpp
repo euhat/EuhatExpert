@@ -169,7 +169,7 @@ int JyMsgLoop::quit()
 	return 1;
 }
 
-void JyMsgLoop::postMsg(int cmd, void *p, int i)
+void JyMsgLoop::postMsg(int cmd, void *p, vint i)
 {
 	JyMsg msg;
 	msg.cmd_ = cmd;

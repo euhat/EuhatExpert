@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             ex.printStackTrace()
         }
 
-        textVersion.setText(textVersion.text.toString() + " " + getBuildTag())
+        textVersion.setText(textVersion.text.toString())
 
         requestPermission()
 

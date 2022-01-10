@@ -46,15 +46,15 @@ void md5Init(Md5Ctx* context)
 	context->state[3] = 0x10325476;
 }
 
-void md5Update(Md5Ctx* context, unsigned char* input, unsigned int inputlen)
+void md5Update(Md5Ctx* context, unsigned char* input, size_t inputlen)
 {
 	unsigned int i = 0, index = 0, partlen = 0;
 	index = (context->count[0] >> 3) & 0x3F;
 	partlen = 64 - index;
-	context->count[0] += inputlen << 3;
+	context->count[0] += (unsigned int)(inputlen << 3);
 	if (context->count[0] < (inputlen << 3))
 		context->count[1]++;
-	context->count[1] += inputlen >> 29;
+	context->count[1] += (unsigned int)(inputlen >> 29);
 
 	if (inputlen >= partlen)
 	{

@@ -44,32 +44,8 @@
     <Filter Include="app\FileMan\common">
       <UniqueIdentifier>{b3d09c58-859f-4e93-b7ee-ffe6b3846633}</UniqueIdentifier>
     </Filter>
-    <Filter Include="app\SimpleFileServer">
-      <UniqueIdentifier>{6e1d308d-3fd0-4776-98ba-9cba5808cf5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="app\SimpleFileServer\client">
-      <UniqueIdentifier>{8ea4d864-f19b-43f7-9a1f-85a2d6602498}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="app\SimpleFileServer\server">
-      <UniqueIdentifier>{0cfe316c-1480-4aa7-bb36-57162f5389cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="app\SimpleFileServer\common">
-      <UniqueIdentifier>{a2751d6f-3227-409f-a707-8f253aab84e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="app\SimpleEchoServer">
-      <UniqueIdentifier>{15c32896-d68d-4f08-b1b5-7ee332a5d38c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="app\SimpleEchoServer\client">
-      <UniqueIdentifier>{cdf6367e-0a9d-4bc8-8019-6db5aefd055c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="app\SimpleEchoServer\server">
-      <UniqueIdentifier>{e3ad94a6-0379-47bf-8874-7fb37b05b150}</UniqueIdentifier>
-    </Filter>
     <Filter Include="euhat\openssl">
       <UniqueIdentifier>{77368153-dfcb-48f1-a7df-4c92b41f57c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="test">
-      <UniqueIdentifier>{0c7fafb1-6c39-4d6d-8661-f27dc83c7e1b}</UniqueIdentifier>
     </Filter>
     <Filter Include="euhat\os\win32\apihook">
       <UniqueIdentifier>{17b90388-c279-42b7-b066-61e7c38e6c7c}</UniqueIdentifier>
@@ -183,24 +159,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\euhat\app\FileMan\server\FileManServer.h">
       <Filter>app\FileMan\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\client\SimpleFileClient.h">
-      <Filter>app\SimpleFileServer\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\common\SimpleFileOp.h">
-      <Filter>app\SimpleFileServer\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\common\SimplePacket.h">
-      <Filter>app\SimpleFileServer\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\euhat\app\SimpleFileServer\server\SimpleFileServer.h">
-      <Filter>app\SimpleFileServer\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\euhat\app\SimpleEchoServer\client\SimpleEchoClient.h">
-      <Filter>app\SimpleEchoServer\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\euhat\app\SimpleEchoServer\server\SimpleEchoServer.h">
-      <Filter>app\SimpleEchoServer\server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\euhat\common\JyTcpClient.h">
       <Filter>euhat\common</Filter>
@@ -531,21 +489,6 @@
     <ClCompile Include="..\..\..\euhat\app\FileMan\server\FileManServer.cpp">
       <Filter>app\FileMan\server</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\client\SimpleFileClient.cpp">
-      <Filter>app\SimpleFileServer\client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\common\SimpleFileOp.cpp">
-      <Filter>app\SimpleFileServer\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\euhat\app\SimpleFileServer\server\SimpleFileServer.cpp">
-      <Filter>app\SimpleFileServer\server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\euhat\app\SimpleEchoServer\client\SimpleEchoClient.cpp">
-      <Filter>app\SimpleEchoServer\client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\euhat\app\SimpleEchoServer\server\SimpleEchoServer.cpp">
-      <Filter>app\SimpleEchoServer\server</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\euhat\common\JyTcpClient.cpp">
       <Filter>euhat\common</Filter>
     </ClCompile>
@@ -599,12 +542,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\euhat\os\win32\EuhatScrollBar.cpp">
       <Filter>euhat\os\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\euhat\test\TestSimpleEchoServer.cpp">
-      <Filter>test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\euhat\test\TestSimpleFileServer.cpp">
-      <Filter>test</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\euhat\os\EuhatPath.cpp">
       <Filter>euhat\os</Filter>

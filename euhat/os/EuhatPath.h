@@ -11,8 +11,9 @@ public:
 	void goUp();
 
 	void inStr(const char *path);
-	string toStr(int isAbsoluteDir = 1);
+	string toStr();
 
 	list<string> path_;
 	int isUnix_;
+	int isAbsPath_;
 };

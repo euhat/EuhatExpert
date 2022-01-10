@@ -271,7 +271,7 @@ void FileManSubDlg::fmscOnRefresh()
 		if (idx > 100)
 		{
 			char buf[1024];
-			sprintf(buf, "%d tasks left not shown...", scheduler_->tasks_.size() - idx);
+			sprintf(buf, "%d tasks left not shown...", (int)(scheduler_->tasks_.size() - idx));
 			row.cells_.push_back(EuhatListCtrl::Cell(utf8ToWstr(buf).c_str()));
 			break;
 		}
@@ -528,10 +528,10 @@ void FileManSubDlg::OnBnClickedBtnCopyClipboardToRemote()
 	HWND hWnd = GetSafeHwnd();
 	::OpenClipboard(hWnd);
 	HANDLE hClipMemory = ::GetClipboardData(CF_UNICODETEXT);
-	DWORD dwLength = GlobalSize(hClipMemory);
+	SIZE_T dwLength = GlobalSize(hClipMemory);
 	LPBYTE lpClipMemory = (LPBYTE)GlobalLock(hClipMemory);
 	string utf8Buf = wstrToUtf8((wchar_t *)lpClipMemory);
-	memToFile(localPathStr.c_str(), (char*)utf8Buf.c_str(), utf8Buf.length());
+	memToFile(localPathStr.c_str(), (char*)utf8Buf.c_str(), (int)utf8Buf.length());
 	GlobalUnlock(hClipMemory);
 	::CloseClipboard();
 
@@ -542,7 +542,7 @@ void FileManSubDlg::OnBnClickedBtnCopyClipboardToRemote()
 
 	shared_ptr<FmTaskDownload> task(new FmTaskUpload());
 	task->localPath_.reset(opStrDup(localPathStr.c_str()));
-	task->peerPath_.reset(opStrDup(remotePath.toStr(0).c_str()));
+	task->peerPath_.reset(opStrDup(remotePath.toStr().c_str()));
 	task->totalFileSize_ = whGetFileSize(localPathStr.c_str());
 	task->lastWriteTime_ = time(NULL);
 	task->offset_ = -1;
@@ -574,7 +574,7 @@ void FileManSubDlg::OnBnClickedBtnCopyClipboardFromRemote()
 
 	shared_ptr<FmTaskDownload> task(new FmTaskDownload());
 	task->localPath_.reset(opStrDup(localPathStr.c_str()));
-	task->peerPath_.reset(opStrDup(remotePath.toStr(0).c_str()));
+	task->peerPath_.reset(opStrDup(remotePath.toStr().c_str()));
 	task->totalFileSize_ = 0;
 	task->lastWriteTime_ = time(NULL);
 	task->offset_ = -1;
@@ -603,7 +603,7 @@ void FileManSubDlg::onClipboardFileComing()
 	unique_ptr<char[]> buf(memFromWholeFile(localPathStr.c_str(), &len));
 
 	wstring wstrBuf = utf8ToWstr(buf.get());
-	len = (wstrBuf.length() + 1) * sizeof(wchar_t);
+	len = (unsigned int)((wstrBuf.length() + 1) * sizeof(wchar_t));
 
 	HANDLE hGlobalMemory = GlobalAlloc(GHND, len + 1);
 	LPBYTE lpGlobalMemory = (LPBYTE)GlobalLock(hGlobalMemory);

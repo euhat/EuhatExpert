@@ -11,7 +11,7 @@ public:
 	JyDataWriteStream();
 	~JyDataWriteStream();
 
-	void ensureRoom(int addSize);
+	void ensureRoom(size_t addSize);
 
 	template<class T>
 	void put(T t)
@@ -33,23 +33,23 @@ public:
 		putBuf<T>(str, strlen(str) + 1);
 	}
 
-	void putBufWithoutLen(const char *buf, int len);
+	void putBufWithoutLen(const char *buf, size_t len);
 
 	template<class T = int>
-	void putBuf(const char *buf, int len)
+	void putBuf(const char *buf, size_t len)
 	{
 		char *ptr = allocBuf<T>(len);
 		memcpy(ptr, buf, len);
 	}
 
 	template<class T = int>
-	char *allocBuf(int bufLen)
+	char *allocBuf(size_t bufLen)
 	{
-		put<T>(bufLen);
+		put<T>((T)bufLen);
 		return allocBufWithoutLen(bufLen);
 	}
 
-	char *allocBufWithoutLen(int bufLen);
+	char *allocBufWithoutLen(size_t bufLen);
 
 	int size();
 	int getIdx() { return idx_; }

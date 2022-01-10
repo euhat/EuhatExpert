@@ -166,9 +166,7 @@ void FmFileDlg::displayFiles(JyDataReadStream &ds)
 			int64_t size = ds.get<int64_t>();
 			row.cells_.push_back(EuhatListCtrl::Cell(size));
 
-			string nameGb = utf8ToGb(name.c_str());
-			string fileType = whFileType(nameGb.c_str());
-			fileType = gbToUtf8(fileType.c_str());
+			string fileType = whFileType(name.c_str());
 			row.cells_.push_back(EuhatListCtrl::Cell(utf8ToWstr(fileType.c_str()).c_str()));
 
 			int64_t t = ds.get<int64_t>();
@@ -207,11 +205,11 @@ void FmFileDlg::onListCtrlDbClick(EuhatListCtrl *listCtrl, WPARAM wParam, int x,
 			EuhatPath euPath = curDir_;
 			euPath.goSub(fileName.c_str());
 			CString szFile = utf8ToWstr(euPath.toStr().c_str()).c_str();
-			DWORD dwRet = (DWORD)ShellExecute(NULL, _T("open"), szFile, NULL, NULL, SW_SHOWNORMAL);
-			if (dwRet < 32)
+			HINSTANCE hInstRet = ShellExecute(NULL, _T("open"), szFile, NULL, NULL, SW_SHOWNORMAL);
+			if (hInstRet < (HINSTANCE)32)
 			{
 				CString msg;
-				msg.Format(_T("open [%s] failed, error code: %d."), szFile, dwRet);
+				msg.Format(_T("open [%s] failed, error code: %p."), szFile, hInstRet);
 				MessageBox(msg);
 			}
 		}

@@ -91,7 +91,7 @@ LRESULT WINAPI ll_record_keyboard_proc(int ncode, WPARAM wparam, LPARAM lparam)
 }
 
 #ifdef _DEBUG
-#define HOOK_DLL_DISABLE 0
+#define HOOK_DLL_DISABLE 1
 #else
 #define HOOK_DLL_DISABLE 0
 #endif

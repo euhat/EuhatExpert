@@ -70,10 +70,10 @@ void EuhatListCtrl::DrawRunner::drawTextInRect(HDC hdc, const wstring &str, RECT
 		rcText.top += gap;
 		rcText.bottom -= gap;
 		rcText.left += 4;
-		DrawText(hdc, str.c_str(), str.size(), &rcText, DT_NOPREFIX);
+		DrawText(hdc, str.c_str(), (int)str.size(), &rcText, DT_NOPREFIX);
 	}
 	else
-		DrawText(hdc, str.c_str(), str.size(), &rc, DT_NOPREFIX);
+		DrawText(hdc, str.c_str(), (int)str.size(), &rc, DT_NOPREFIX);
 }
 
 void EuhatListCtrl::DrawRunner::drawIconInRect(HDC hdc, HICON icon, RECT &rc, int width, int height)

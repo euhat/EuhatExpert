@@ -9,7 +9,7 @@ void FmScheduler::UserWrapper::fmscOnGetSubList(JyMsgLoop *loop, JyDataReadStrea
 	FmscUserParam *param = new FmscUserParam();
 	param->cmd_ = 0;
 
-	int len = ds.buf_.size_;
+	size_t len = ds.buf_.size_;
 	char *mem = (char *)malloc(len);
 	memcpy(mem, ds.buf_.data_.get(), len);
 
@@ -44,7 +44,7 @@ void FmScheduler::UserWrapper::fmscOnGetSysInfo(JyMsgLoop *loop, JyDataReadStrea
 	FmscUserParam *param = new FmscUserParam();
 	param->cmd_ = 3;
 
-	int len = ds.buf_.size_;
+	size_t len = ds.buf_.size_;
 	char *mem = (char *)malloc(len);
 	memcpy(mem, ds.buf_.data_.get(), len);
 

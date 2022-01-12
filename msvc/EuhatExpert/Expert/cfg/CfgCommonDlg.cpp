@@ -39,8 +39,6 @@ BOOL createLink(const TCHAR *szPath, const TCHAR *szLink)
 	IShellLink *psl;
 	IPersistFile *ppf;
  
-	CoInitialize(NULL);
-  
 	hres = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void **)&psl);
 	if (FAILED(hres)) {
 		CoUninitialize();
@@ -65,8 +63,6 @@ BOOL createLink(const TCHAR *szPath, const TCHAR *szLink)
   
 	ppf->Release();
 	psl->Release();
-
-	CoUninitialize();
 
 	return TRUE;
 }

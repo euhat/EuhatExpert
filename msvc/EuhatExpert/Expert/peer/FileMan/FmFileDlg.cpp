@@ -106,8 +106,7 @@ void FmFileDlg::displayFiles(JyDataReadStream &ds)
 	curDir_.inStr(ds.getStr());
 
 	string curDir = curDir_.toStr();
-	curDir = utf8ToGb(curDir.c_str());
-	CString cstr = CA2T(curDir.c_str());
+	CString cstr = utf8ToWstr(curDir.c_str()).c_str();
 	SetDlgItemText(IDC_EDIT_CUR_DIR, cstr);
 
 	iconPool_.reset(new EuhatIconSysPool());

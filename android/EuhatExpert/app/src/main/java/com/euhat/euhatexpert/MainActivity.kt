@@ -14,16 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.BufferedWriter
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStreamWriter
+import java.io.*
 import java.net.Inet6Address
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.net.SocketException
 import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,12 +36,12 @@ class MainActivity : AppCompatActivity() {
         textVersion.setText(textVersion.text.toString())
 
         requestPermission()
-
-        //writeLog("hi, bingo!")
     }
 
     fun afterPermissionsAllowed()
     {
+        writeLog("hi, bingo!")
+
         editPort.setText("8083")
         editIp.setText(getHostIP())
         editVisitCode.setText(getVisitCode(getLocalMacAddressFromIp()))

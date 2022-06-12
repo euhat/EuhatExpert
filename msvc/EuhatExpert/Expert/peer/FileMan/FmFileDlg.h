@@ -47,4 +47,6 @@ protected:
 	virtual BOOL OnInitDialog();
 	void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnBnClickedBtnGoUpFolder();
+public:
+	afx_msg void OnBnClickedBtnEnterDir();
 };

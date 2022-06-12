@@ -169,7 +169,7 @@ BOOL KqInformDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	pushUiLoc("NOTIFICATION_MSG", "Have you check at %d:%d?");
+	pushUiLoc("NOTIFICATION_MSG", "Have check at %d:%d?");
 
 	string tag = euhatBase_->tagApp_ + "/" + "KqInformDlg";
 	euhatBase_->refreshUiLocalization(this, tag.c_str());

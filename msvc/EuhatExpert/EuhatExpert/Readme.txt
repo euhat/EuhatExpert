@@ -11,7 +11,7 @@ visit http://euhat.com/expert/ for more information about this software.
 
 How to use? 
 -------------
-1. Ensure you installed Microsoft Visual C++ Redistributable for Visual Studio 2019 first, visit http://euhat.com/expert/download.php to find the url of the Redistributable.
+1. Ensure Microsoft Visual C++ Redistributable for Visual Studio 2022 x64 is installed first, visit http://euhat.com/expert/download.php to find the url of the Redistributable.
 
 2. Run EuhatExpert.exe in the unzipped folder.
 

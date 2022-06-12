@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         btnRandomPassword.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 var randStr:String = ""
-                for (i in 0..8) {
+                for (i in 0..5) {
                     randStr += (0..9).random()
                 }
                 editVisitCode.setText(randStr)

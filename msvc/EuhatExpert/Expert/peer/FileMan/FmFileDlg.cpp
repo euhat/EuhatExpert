@@ -31,6 +31,7 @@ void FmFileDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(FmFileDlg, CDialogEx)
 	ON_WM_SIZE()
+	ON_BN_CLICKED(IDC_BTN_ENTER_DIR, &FmFileDlg::OnBnClickedBtnEnterDir)
 END_MESSAGE_MAP()
 
 void FmFileDlg::correctPos()
@@ -243,4 +244,11 @@ void FmFileDlg::onClick(EuhatTabCtrl &ctrl)
 		parentDlg_->newFolder(engine_);
 	}
 	ctrl.setCurSel(-1);
+}
+
+void FmFileDlg::OnBnClickedBtnEnterDir()
+{
+	CString cstr;
+	GetDlgItemTextW(IDC_EDIT_CUR_DIR, cstr);
+	parentDlg_->browserDir(engine_, wstrToUtf8(cstr).c_str());
 }

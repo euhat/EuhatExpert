@@ -11,7 +11,7 @@
 
 如何使用？
 -----------
-1，首先请保证您安装了微软VC2019 x86版运行时包。请访问 http://euhat.com/expert/download_cn.php 下载安装运行时包。
+1，首先请保证您安装了微软VC2020 x64版运行时包。请访问 http://euhat.com/expert/download_cn.php 下载安装运行时包。
 2，运行解压后文件夹里的EuhatExpert.exe。
 
 有任何问题都可以用此邮件地址联系我: euhat@hotmail.com

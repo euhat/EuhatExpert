@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,6 +24,7 @@ import java.net.SocketException
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    var selectedIp = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +41,59 @@ class MainActivity : AppCompatActivity() {
         requestPermission()
     }
 
+    var arrayOfIp:Array<String> = arrayOf()
+
+    fun getHostIps() {
+
+        try {
+            val nis = NetworkInterface.getNetworkInterfaces()
+            var ia: InetAddress
+            while (nis.hasMoreElements()) {
+                val ni = nis.nextElement() as NetworkInterface
+                val ias = ni.getInetAddresses()
+                while (ias.hasMoreElements()) {
+                    ia = ias.nextElement()
+                    if (ia is Inet6Address) {
+                        continue // skip ipv6
+                    }
+                    val ip = ia.getHostAddress()
+                    if ("127.0.0.1" != ip) {
+                        arrayOfIp = arrayOfIp.plus(ip)
+                    }
+                }
+            }
+        } catch (e: SocketException) {
+            Log.i("euhat", "SocketException")
+            e.printStackTrace()
+        }
+    }
+
     fun afterPermissionsAllowed()
     {
         writeLog("hi, bingo!")
 
         editPort.setText("8083")
-        editIp.setText(getHostIP())
-        editVisitCode.setText(getVisitCode(getLocalMacAddressFromIp()))
+        getHostIps()
+        var ipsAdapter:ArrayAdapter<String> = ArrayAdapter(this, R.layout.spinner_item, arrayOfIp)
+        ipsAdapter.setDropDownViewResource(R.layout.drop_item)
+        spinnerIp.prompt = "Select the ethernet Ip."
+        spinnerIp.adapter = ipsAdapter
+        spinnerIp.setSelection(0)
+        spinnerIp.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedIp = arrayOfIp[position]
+                editVisitCode.setText(getVisitCode(getLocalMacAddressFromIp()))
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
 
         var showPassword = false
         btnTogglePassword.setOnClickListener(object : View.OnClickListener {
@@ -163,40 +212,12 @@ class MainActivity : AppCompatActivity() {
     external fun stopServer(): Int
     external fun getBuildTag(): String
 
-    fun getHostIP(): String? {
-
-        var hostIp: String? = null
-        try {
-            val nis = NetworkInterface.getNetworkInterfaces()
-            var ia: InetAddress
-            while (nis.hasMoreElements()) {
-                val ni = nis.nextElement() as NetworkInterface
-                val ias = ni.getInetAddresses()
-                while (ias.hasMoreElements()) {
-                    ia = ias.nextElement()
-                    if (ia is Inet6Address) {
-                        continue // skip ipv6
-                    }
-                    val ip = ia.getHostAddress()
-                    if ("127.0.0.1" != ip) {
-                        hostIp = ia.getHostAddress()
-                        break
-                    }
-                }
-            }
-        } catch (e: SocketException) {
-            Log.i("euhat", "SocketException")
-            e.printStackTrace()
-        }
-        return hostIp
-    }
-
     fun getLocalMacAddressFromIp(): String {
         var mac_s: String = ""
         try {
             val mac: ByteArray
             val ne = NetworkInterface.getByInetAddress(
-                InetAddress.getByName(getHostIP())
+                InetAddress.getByName(selectedIp)
             )
             mac = ne.hardwareAddress
             mac_s = byte2hex(mac)

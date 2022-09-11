@@ -29,7 +29,7 @@ void EuhatPath::inStr(const char *path)
 	strReplaceChar(buf.get(), '\\', '/');
 
 	isAbsPath_ = 0;
-	int len = strlen(buf.get());
+	size_t len = strlen(buf.get());
 	if (len > 1)
 	{
 		if (buf.get()[0] == '/')

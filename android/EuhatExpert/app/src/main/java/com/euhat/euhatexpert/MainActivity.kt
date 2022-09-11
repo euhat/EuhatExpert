@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     var arrayOfIp:Array<String> = arrayOf()
 
     fun getHostIps() {
+        arrayOfIp = arrayOf()
 
         try {
             val nis = NetworkInterface.getNetworkInterfaces()
@@ -124,6 +125,19 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 var port = Integer.parseInt(editPort.getText().toString())
                 var visitCode = editVisitCode.getText().toString()
+
+                if (visitCode.isEmpty()) {
+                    AlertDialog.Builder(this@MainActivity)
+                        .setMessage("Please click the random button to generate visit code.")
+                        .setPositiveButton(
+                            "OK"
+                        ) { dialoginterface, i ->
+                            requestPermission()
+                        }
+                        .show()
+                    return
+                }
+
                 startServer(port, visitCode)
                 btnStart.isEnabled = false
                 btnEnd.isEnabled = true

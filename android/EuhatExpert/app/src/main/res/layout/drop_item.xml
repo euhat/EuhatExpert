@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="5dp"
-    android:gravity="center"
+    android:gravity="left|center"
     android:orientation="vertical"
     android:textColor="#000000"
     android:textSize="20dp"

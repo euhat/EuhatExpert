@@ -32,6 +32,8 @@ void FmFileDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(FmFileDlg, CDialogEx)
 	ON_WM_SIZE()
 	ON_BN_CLICKED(IDC_BTN_ENTER_DIR, &FmFileDlg::OnBnClickedBtnEnterDir)
+	ON_EN_CHANGE(IDC_EDIT_CUR_DIR, &FmFileDlg::OnChangeEditCurDir)
+	ON_EN_MAXTEXT(IDC_EDIT_CUR_DIR, &FmFileDlg::OnMaxtextEditCurDir)
 END_MESSAGE_MAP()
 
 void FmFileDlg::correctPos()
@@ -251,4 +253,29 @@ void FmFileDlg::OnBnClickedBtnEnterDir()
 	CString cstr;
 	GetDlgItemTextW(IDC_EDIT_CUR_DIR, cstr);
 	parentDlg_->browserDir(engine_, wstrToUtf8(cstr).c_str());
+}
+
+
+BOOL FmFileDlg::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
+	{
+		if (GetFocus()->GetDlgCtrlID() == IDC_EDIT_CUR_DIR)
+		{
+			OnBnClickedBtnEnterDir();
+			return TRUE;
+		}
+	}
+
+	return __super::PreTranslateMessage(pMsg);
+}
+
+void FmFileDlg::OnChangeEditCurDir()
+{
+
+}
+
+void FmFileDlg::OnMaxtextEditCurDir()
+{
+	OnBnClickedBtnEnterDir();
 }

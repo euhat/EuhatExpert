@@ -49,4 +49,7 @@ protected:
 	afx_msg void OnBnClickedBtnGoUpFolder();
 public:
 	afx_msg void OnBnClickedBtnEnterDir();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnChangeEditCurDir();
+	afx_msg void OnMaxtextEditCurDir();
 };

@@ -180,7 +180,7 @@ int JyTcpSelector::addConnect(const char *ip, int port, JyTcpEndpoint *listener)
 	addr.sin_port = htons(port);
 	addr.sin_addr.s_addr = inet_addr(ip);
 
-	DBG(("add connect listener %d.\n", sock));
+	DBG(("add connect listener %d.\n", (int)sock));
 
 	if (::connect(sock, (WhSockAddr *)&addr, sizeof(addr)) < 0)
 	{
